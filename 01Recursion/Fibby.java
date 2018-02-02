@@ -9,7 +9,7 @@ public class Fibby{
 	    if(args[0].equals("1")){
 		System.out.println(costFib(0));
 		System.out.println(costFib(1));
-		System.out.println(costFib(4));
+		System.out.println(costFib(3));
 	    }
 	}
 	else{
@@ -30,7 +30,7 @@ public class Fibby{
     }
 
     public static double costFib(int n){
-	if (n <= 1){
+	if (n < 2){
 	    return 0.05 * (n + 1);
 	}
 
