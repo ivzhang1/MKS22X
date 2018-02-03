@@ -14,7 +14,8 @@ public class RecursionTest{
 			   (System.currentTimeMillis() - startTime)/1000.0 + "s"
 			   );
 
-	
+	System.out.println(x.sqrt(2.0));
+	System.out.println(x.sqrt(0.5));	
 	
     }
 

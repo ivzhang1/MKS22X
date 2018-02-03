@@ -23,8 +23,26 @@ public class Recursion{
 	if (n == 0){
 	    return bSum;
 	}
-	
 	return fibHelper(n-1, bSum, aSum + bSum);
-	
     }
+
+
+    public double sqrt(double n){
+	if (n < 0){
+	    throw new IllegalArgumentException();
+	}
+	return sqrtHelper(n * 1.0, n/(2.0), 0.000000001);
+    }
+
+    public static double sqrtHelper(double n, double guess, double tolerance){
+	if ((guess * guess - n) < tolerance && !(guess * guess < n)  ){
+	    return guess;
+	}
+
+	double newGuess = (n/guess + guess) / 2;
+	    
+	return sqrtHelper(n, newGuess, tolerance);
+    }
+
+    
 }
