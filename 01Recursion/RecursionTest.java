@@ -102,7 +102,7 @@ public class RecursionTest{
 	    System.out.println();
 	}	
 
-	
+	System.out.println(x.isPossibleSum(10,55));
 	
     }
 

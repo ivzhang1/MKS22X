@@ -44,5 +44,22 @@ public class Recursion{
 	return sqrtHelper(n, newGuess, tolerance);
     }
 
+    public static Boolean isPossibleSum(int n, int target){
+	if (n < 0){
+	    throw new IllegalArgumentException();
+	}
+	return isPossibleSumHelper(n, target, n, 0);
+    }
+
+    public static Boolean isPossibleSumHelper(int n, int target, int current, int partialSum){
+	//System.out.println(partialSum + " " + target);
+	if (partialSum == target){
+	    return true;
+	}
+	if (current < 0){
+	    return (partialSum == target);
+	}
+	return isPossibleSumHelper(n, target, current-1, partialSum+current) ||  isPossibleSumHelper(n, target, current-1, partialSum);
+    }
     
 }
