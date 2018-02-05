@@ -21,7 +21,7 @@ public class Recursion{
     //Where aSum = fib(n-2) and bSum = fib(n-1)
     public static int fibHelper(int n, int aSum, int bSum){
 	if (n == 0){
-	    return bSum;
+	    return aSum;
 	}
 	return fibHelper(n-1, bSum, aSum + bSum);
     }

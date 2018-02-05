@@ -79,7 +79,7 @@ public class RecursionTest{
 	System.out.println("Runtime test for fib(n)");
 	long startTimeA = System.currentTimeMillis();
 	
-	System.out.println(x.fib(10000)); // I got 2132534333
+	System.out.println(x.fib(10000));
 	
 	runTime(startTimeA); //Should take 0.01 ms
 	System.out.println("<= 1ms\n");
@@ -116,7 +116,6 @@ public class RecursionTest{
 
     // From: https://stackoverflow.com/questions/12771868/how-to-write-fibonacci-java-program-without-using-if
     public static double getFibonacci(int n) {
-	n += 1; //Shifts function over by one
 	double f1 = Math.pow(((1 + Math.sqrt(5)) / 2.0), n);
 	double f2 = Math.pow(((1 - Math.sqrt(5)) / 2.0), n);
 
