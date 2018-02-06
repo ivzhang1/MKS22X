@@ -103,6 +103,18 @@ public class RecursionTest{
 	}	
 
 	System.out.println(x.isPossibleSum(10,55));
+
+	System.out.println(x.isPossibleSum(10,10));
+
+	System.out.println(x.isPossibleSum(10,5));
+
+	System.out.println(x.isPossibleSum(10,-5));
+
+	System.out.println(x.isPossibleSum(10,0));
+	
+	System.out.println(x.isPossibleSum(10,1000));	
+	
+	
 	
     }
 
