@@ -3,7 +3,15 @@ public class QueenBoard{
 
     public static void main(String[] args){
 	QueenBoard test = new QueenBoard(5);
-	System.out.println(test.addQueen(2,2));
+	System.out.println(test.addQueen(2,2,1)); // true
+	System.out.println(test.addQueen(0,1,1)); // true
+	System.out.println(test.addQueen(2,2,1)); // false
+	System.out.println(test.addQueen(2,1,1)); // false
+	System.out.println(test.addQueen(0,2,1)); // false
+
+	System.out.println(test.removeQueen(2,2)); // true
+	System.out.println(test.removeQueen(0,0)); // false	
+	
 	System.out.println(test);
     }
     
@@ -11,26 +19,26 @@ public class QueenBoard{
 	board = new int[size][size];
     }
 
-    private boolean addQueen (int r, int c){
+    private boolean addQueen (int r, int c, int addAmount){
 	if (board[r][c] != 0){
 	    return false;
 	}
 	
 	//Adds to same row and column
 	for (int i = 0 ; i < board.length; i ++){
-	    board[r][i] += 1;
-	    board[i][c] += 1;
+	    board[r][i] += addAmount;
+	    board[i][c] += addAmount;
 	}
 
+	int row = r;
+	int col = c;
 	//Adds to diagonals
 	for (int inc = -1; inc < 2; inc+=2){
-	    int row = r;
-	    int col = c;
 	    for (int incA = -1; incA < 2; incA+=2){
 		row = r;
 		col = c;
-		while ((row+col < row*2) && (row + col > 0)){
-		    board[row][col] += 1;
+		while (row > -1 && col > -1 && row < board.length && col < board.length){
+		    board[row][col] += addAmount;
 		    row += inc;
 		    col += incA;
 		}
@@ -40,6 +48,17 @@ public class QueenBoard{
 	board[r][c] = -10;
 	return true;
 	
+    }
+
+
+    private boolean removeQueen(int r, int c){
+	if (board[r][c] != -10){ //Queen at position
+	    return false;
+	}
+	board[r][c] = 0;
+	boolean worked = addQueen(r,c,-1);
+	board[r][c] = 0;
+	return worked;
     }
     
     /**
