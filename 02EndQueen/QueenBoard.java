@@ -1,5 +1,6 @@
 public class QueenBoard{
     private int[][] board;
+    
 
     public static void main(String[] args){
 	QueenBoard test = new QueenBoard(5);
@@ -15,8 +16,11 @@ public class QueenBoard{
 	
 	System.out.println(test);
 	test = new QueenBoard(8);
-	System.out.println(test);
+	//System.out.println(test);
 	System.out.println(test.solve());
+	System.out.println(test);
+	test = new QueenBoard(8);	
+	System.out.println(test.countSolutions());
 	System.out.println(test);
     }
     
@@ -67,7 +71,7 @@ public class QueenBoard{
 	}
 	board[r][c] = 0;
 	boolean worked = addQueen(r,c,-1);
-	board[r][c] = -1;
+	board[r][c] = 0;
 	return worked;
     }
 
@@ -82,29 +86,28 @@ public class QueenBoard{
 	}
 	return solveHelp(0,0);
     }
-
+    
     private boolean solveHelp(int c, int total){
-	if (total == board.length){
-	    return true;
-	}
-	if (c == board.length){
-	    return false;
-	}
+    	if (c == board.length){
+    	    return total == board.length;
+    	}
 
-	for (int r = 0; r < board.length; r++){
-	    if (addQueen(r,c)){
-		boolean worked = solveHelp(c+1, total+1);
-		if (worked){
-		    return worked;
-		}
-		else{
-		    removeQueen(r,c);
-		}
-	    }
-	}
-	return false;
+    	for (int r = 0; r < board.length; r++){
+    	    if (addQueen(r,c)){
+    		boolean worked = solveHelp(c+1, total+1);
+    		if (worked){
+    		    return worked;
+    		}
+    		else{
+    		    removeQueen(r,c);
+    		}
+    	    }
+    	}
+    	return false;
 	
     }
+
+    
 
     private boolean hasNonZero(){
 	for (int r = 0; r < board.length; r++){
@@ -117,6 +120,39 @@ public class QueenBoard{
 	return false;
     }
 
+
+    /**
+     *@return the number of solutions found, and leaves the board filled with only 0's
+     *@throws IllegalStateException when the board starts with any non-zero value
+     */
+    public int countSolutions(){
+	if (hasNonZero()){
+	    throw new IllegalStateException();
+	}
+	return countSolutionsHelp(0,0);
+	
+    }
+    
+    private int countSolutionsHelp(int c, int total){
+	int times = 0;
+  	if (c == board.length){
+    	    if (total == board.length){
+		return 1;
+	    }
+	    else{
+		return 0;
+	    }
+    	}
+
+    	for (int r = 0; r < board.length; r++){
+    	    if (addQueen(r,c)){
+		times += countSolutionsHelp(c+1, total+1);
+		removeQueen(r,c);	
+    	    }
+    	}
+    	return times;
+	
+    }
     
     /**
      *@return The output string formatted as follows:
