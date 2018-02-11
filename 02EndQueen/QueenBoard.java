@@ -2,27 +2,27 @@ public class QueenBoard{
     private int[][] board;
     
 
-    public static void main(String[] args){
-	QueenBoard test = new QueenBoard(5);
-	System.out.println(test.addQueen(2,2)); // true
-	System.out.println(test.addQueen(0,1)); // true
+    // public static void main(String[] args){
+    // 	QueenBoard test = new QueenBoard(5);
+    // 	System.out.println(test.addQueen(2,2)); // true
+    // 	System.out.println(test.addQueen(0,1)); // true
 	
-	System.out.println(test.addQueen(2,2)); // false
-	System.out.println(test.addQueen(2,1)); // false
-	System.out.println(test.addQueen(0,2)); // false
+    // 	System.out.println(test.addQueen(2,2)); // false
+    // 	System.out.println(test.addQueen(2,1)); // false
+    // 	System.out.println(test.addQueen(0,2)); // false
 
-	System.out.println(test.removeQueen(2,2)); // true
-	System.out.println(test.removeQueen(0,0)); // false	
+    // 	System.out.println(test.removeQueen(2,2)); // true
+    // 	System.out.println(test.removeQueen(0,0)); // false	
 	
-	System.out.println(test);
-	test = new QueenBoard(8);
-	//System.out.println(test);
-	System.out.println(test.solve());
-	System.out.println(test);
-	test = new QueenBoard(8);	
-	System.out.println(test.countSolutions());
-	System.out.println(test);
-    }
+    // 	System.out.println(test);
+    // 	test = new QueenBoard(8);
+    // 	//System.out.println(test);
+    // 	System.out.println(test.solve());
+    // 	System.out.println(test);
+    // 	test = new QueenBoard(8);	
+    // 	System.out.println(test.countSolutions());
+    // 	System.out.println(test);
+    // }
     
     public QueenBoard(int size){
 	board = new int[size][size];
