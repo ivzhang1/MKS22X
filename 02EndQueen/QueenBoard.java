@@ -3,15 +3,20 @@ public class QueenBoard{
 
     public static void main(String[] args){
 	QueenBoard test = new QueenBoard(5);
-	System.out.println(test.addQueen(2,2,1)); // true
-	System.out.println(test.addQueen(0,1,1)); // true
-	System.out.println(test.addQueen(2,2,1)); // false
-	System.out.println(test.addQueen(2,1,1)); // false
-	System.out.println(test.addQueen(0,2,1)); // false
+	System.out.println(test.addQueen(2,2)); // true
+	System.out.println(test.addQueen(0,1)); // true
+	
+	System.out.println(test.addQueen(2,2)); // false
+	System.out.println(test.addQueen(2,1)); // false
+	System.out.println(test.addQueen(0,2)); // false
 
 	System.out.println(test.removeQueen(2,2)); // true
 	System.out.println(test.removeQueen(0,0)); // false	
 	
+	System.out.println(test);
+	test = new QueenBoard(8);
+	System.out.println(test);
+	System.out.println(test.solve());
 	System.out.println(test);
     }
     
@@ -41,25 +46,77 @@ public class QueenBoard{
 		    board[row][col] += addAmount;
 		    row += inc;
 		    col += incA;
+		   
 		}
 	    }
 	}
 
-	board[r][c] = -10;
+	board[r][c] = -1;
 	return true;
 	
     }
 
+    private boolean addQueen(int r, int c){
+	return addQueen(r,c,1);
+    }
+
 
     private boolean removeQueen(int r, int c){
-	if (board[r][c] != -10){ //Queen at position
+	if (board[r][c] != -1){ //Queen at position
 	    return false;
 	}
 	board[r][c] = 0;
 	boolean worked = addQueen(r,c,-1);
-	board[r][c] = 0;
+	board[r][c] = -1;
 	return worked;
     }
+
+    /**
+     *@return false when the board is not solveable and leaves the board filled with zeros; 
+     *        true when the board is solveable, and leaves the board in a solved state
+     *@throws IllegalStateException when the board starts with any non-zero value
+     */
+    public boolean solve(){
+	if (hasNonZero()){
+	    throw new IllegalStateException();
+	}
+	return solveHelp(0,0);
+    }
+
+    private boolean solveHelp(int c, int total){
+	if (total == board.length){
+	    return true;
+	}
+	if (c == board.length){
+	    return false;
+	}
+
+	for (int r = 0; r < board.length; r++){
+	    if (addQueen(r,c)){
+		boolean worked = solveHelp(c+1, total+1);
+		if (worked){
+		    return worked;
+		}
+		else{
+		    removeQueen(r,c);
+		}
+	    }
+	}
+	return false;
+	
+    }
+
+    private boolean hasNonZero(){
+	for (int r = 0; r < board.length; r++){
+	    for (int c = 0; c < board.length; c++){
+		if (board[r][c] != 0){
+		    return true;
+		}
+	    }
+	}
+	return false;
+    }
+
     
     /**
      *@return The output string formatted as follows:
@@ -76,7 +133,7 @@ public class QueenBoard{
 	    
 	for (int r = 0; r < board.length; r++){
 	    for (int c = 0; c < board.length; c++){
-		if (board[r][c] == -10){
+		if (board[r][c] == -1){
 		    add = "Q ";
 		}
 		else if (board[r][c] > 0){
