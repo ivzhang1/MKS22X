@@ -127,24 +127,19 @@ public class QueenBoard{
 	if (hasNonZero()){
 	    throw new IllegalStateException();
 	}
-	return countSolutionsHelp(0,0);
+	return countSolutionsHelp(0);
 	
     }
     
-    private int countSolutionsHelp(int c, int total){
+    private int countSolutionsHelp(int c){
 	int times = 0;
   	if (c == board.length){
-    	    if (total == board.length){
-		return 1;
-	    }
-	    else{
-		return 0;
-	    }
+	    return 1;
     	}
 
     	for (int r = 0; r < board.length; r++){
     	    if (addQueen(r,c)){
-		times += countSolutionsHelp(c+1, total+1);
+		times += countSolutionsHelp(c+1);
 		removeQueen(r,c);	
     	    }
     	}
