@@ -84,26 +84,24 @@ public class QueenBoard{
 	if (hasNonZero()){
 	    throw new IllegalStateException();
 	}
-	return solveHelp(0,0);
+	return solveHelp(0);
     }
     
-    private boolean solveHelp(int c, int total){
+    private boolean solveHelp(int c){
     	if (c == board.length){
-    	    return total == board.length;
+    	    return true;
     	}
-
-    	for (int r = 0; r < board.length; r++){
-    	    if (addQueen(r,c)){
-    		boolean worked = solveHelp(c+1, total+1);
-    		if (worked){
-    		    return worked;
-    		}
-    		else{
-    		    removeQueen(r,c);
-    		}
-    	    }
-    	}
-    	return false;
+	for(int r = 0; r < board.length; r++){
+	    if (addQueen(r, c)){
+		if (solveHelp(c+1)){
+		    return true;
+		}
+		else{
+		    removeQueen(r,c);
+		}
+	    }
+	}
+	return false;
 	
     }
 
