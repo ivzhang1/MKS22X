@@ -2,7 +2,7 @@ public class QueenBoardDriver{
 
     // Driver by Crystal (https://groups.google.com/a/stuy.edu/d/msgid/apcs2017-konstantinovich/d22318bc-95f1-4e6c-8bea-fc8612ff881b%40stuy.edu?utm_medium=email&utm_source=footer)
     public static void main(String[] args){
-	QueenBoard b = new QueenBoard(4);
+	QueenBoard b = new QueenBoard(30);
 
 	System.out.println(b.solve()); //prints true
 	System.out.println(b); //prints a valid solution

@@ -166,7 +166,7 @@ public class QueenBoard{
 		    add = "Q ";
 		}
 		else if (board[r][c] > 0){
-		    add = "X ";
+		    add = "_ ";
 		}
 		else {
 		    add = "_ ";
