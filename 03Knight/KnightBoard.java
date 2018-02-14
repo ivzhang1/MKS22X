@@ -10,6 +10,9 @@ public class KnightBoard{
     }
     
     public KnightBoard(int startingRows,int startingCols){
+	if (startingRows < 0 || startingCols < 0){
+	    throw new IllegalStateException();
+	}
 	board = new int[startingRows][startingCols];
 	int counter = 8;
 	for (int i = 0; i < startingRows; i++){
@@ -40,8 +43,30 @@ public class KnightBoard{
 	return returned;
     }
 
-    public boolean solve(){} 
-    public int countSolutions(){} 
+    private boolean hasNonZero(){
+	for (int r = 0; r < board.length; r++){
+	    for (int c = 0; c < board.length; c++){
+		if (board[r][c] != 0){
+		    return true;
+		}
+	    }
+	}
+	return false;
+    }
+    private boolean checkConditions(int startingRow, int startingCol){
+	if (hasNonZero()){
+	    throw new IllegalStateException();
+	}
+	if (startingRow < 0 || startingCol < 0){
+	    throw new IllegalArgumentException();
+	}
+	return true;
+    }
+    
+    public boolean solve(int startingRow, int startingCol){
+	checkConditions(startingRow, startingCol);
+	return solveH(startingRow, startingCol, 1);
+    }
 
     //see format for toString below
     //blank boards use underscores 
@@ -49,5 +74,7 @@ public class KnightBoard{
     //when there is no solution
     private boolean solveH(int row ,int col, int level){ 
     }
+        
+    public int countSolutions(){} 
 
 }
