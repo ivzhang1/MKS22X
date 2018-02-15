@@ -5,6 +5,8 @@ public class KnightBoard{
 
     public static void main(String[] args){
 	KnightBoard n = new KnightBoard(3,3);
+	System.out.println(n.solve(5,5));
+	System.out.println(n);
 	
 	
     }
@@ -14,12 +16,6 @@ public class KnightBoard{
 	    throw new IllegalStateException();
 	}
 	board = new int[startingRows][startingCols];
-	int counter = 8;
-	for (int i = 0; i < startingRows; i++){
-	    for (int k = 0; k < startingCols; k++){
-		board[i][k] = counter++;
-	    }
-	}
 	numRows = startingRows;
 	numCols = startingCols;
     }
@@ -32,9 +28,9 @@ public class KnightBoard{
 	String returned = "";
 	for (int r = 0; r < numRows; r++){
 	    for (int c = 0; c < numCols; c++){
-		int current = board[r][c];
-		if (current < 10){
-		    current = "_" + current;
+		String current = "" + board[r][c];
+		if (board[r][c] < 10){
+		     current = "_" + current;
 		}
 		returned += "" + current + " ";
 	    }
@@ -72,9 +68,37 @@ public class KnightBoard{
     //blank boards use underscores 
     //you get a blank board if you never called solve or 
     //when there is no solution
-    private boolean solveH(int row ,int col, int level){ 
+    private boolean solveH(int row ,int col, int level){
+	if (board[row][col] != 0){
+	    return false;
+	}
+	if (numCols*numRows == level){
+	    return true;
+	}
+
+	int[] moves = {row+1, col-2, row+1, col+2,
+		       row-1,col-2, row-1, col+2,
+		       row+2, col - 1, row-2, col-1,
+		       row+2,col+1, row-2, col+1};
+	
+	for (int i = 0; i < 16;i+=2){
+	    int nextRow = moves[i];
+	    int nextCol = moves[i+1];
+	    if (row < 0 || col < 0 || col >= numCols || row >= numRows){
+		board[nextRow][nextCol] = level;
+		if (solveH(nextRow, nextCol, level+ 1)){
+		    return true;
+		}
+		board[nextRow][nextCol] = 0;
+	    }
+	}
+	return false;
+      
     }
+
         
-    public int countSolutions(){} 
+    public int countSolutions(){
+	return 0;
+    } 
 
 }
