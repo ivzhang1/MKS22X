@@ -2,10 +2,14 @@ public class KnightBoard{
     private int[][] board;
     private int numRows;
     private int numCols;
+    private int[][] moves = {{1, -2}, {1, 2},
+			   {-1,-2}, {-1, 2},
+			   {2, -1}, {-2, -1},
+			   {2,1}, {-2, 1}};
 
     public static void main(String[] args){
 	KnightBoard n = new KnightBoard(7,7);
-	System.out.println(n.solve(0,0));
+	System.out.println(n.solve(3,3));
 	System.out.println(n);
 	
 	
@@ -78,14 +82,10 @@ public class KnightBoard{
 	    return true;
 	}
 
-	//Move Combos
-	int[] moves = {r+1, c-2, r+1, c+2,
-		       r-1,c-2, r-1, c+2,
-		       r+2, c - 1, r-2, c-1,
-		       r+2,c+1, r-2, c+1};
-	for (int i = 0; i < 16; i+=2){
-	    int nextRow = moves[i];
-	    int nextCol = moves[i+1];
+	
+	for (int i = 0; i < 8; i++){
+	    int nextRow = r + moves[i][0];
+	    int nextCol = c + moves[i][1];
 	    //System.out.println(level);
 	    if (!(nextRow < 0 || nextCol < 0 || nextCol >= numCols || nextRow >= numRows)){
 		board[r][c] = level;
@@ -99,10 +99,9 @@ public class KnightBoard{
 	}
 	return false;	    
     }
-
-        
+    
     public int countSolutions(){
-	return 0;
+	return 1;
     } 
 
 }
