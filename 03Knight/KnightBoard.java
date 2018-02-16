@@ -4,8 +4,8 @@ public class KnightBoard{
     private int numCols;
 
     public static void main(String[] args){
-	KnightBoard n = new KnightBoard(3,3);
-	System.out.println(n.solve(5,5));
+	KnightBoard n = new KnightBoard(7,7);
+	System.out.println(n.solve(0,0));
 	System.out.println(n);
 	
 	
@@ -53,7 +53,7 @@ public class KnightBoard{
 	if (hasNonZero()){
 	    throw new IllegalStateException();
 	}
-	if (startingRow < 0 || startingCol < 0){
+	if (startingRow < 0 || startingCol < 0 || startingRow >= numRows || startingCol >= numCols){
 	    throw new IllegalArgumentException();
 	}
 	return true;
@@ -68,32 +68,36 @@ public class KnightBoard{
     //blank boards use underscores 
     //you get a blank board if you never called solve or 
     //when there is no solution
-    private boolean solveH(int row ,int col, int level){
-	if (board[row][col] != 0){
+    private boolean solveH(int r ,int c, int level){
+	
+	if (board[r][c] != 0){
 	    return false;
 	}
-	if (numCols*numRows == level){
+	if (numRows * numCols == level){
+	    board[r][c] = level;
 	    return true;
 	}
 
-	int[] moves = {row+1, col-2, row+1, col+2,
-		       row-1,col-2, row-1, col+2,
-		       row+2, col - 1, row-2, col-1,
-		       row+2,col+1, row-2, col+1};
-	
-	for (int i = 0; i < 16;i+=2){
+	//Move Combos
+	int[] moves = {r+1, c-2, r+1, c+2,
+		       r-1,c-2, r-1, c+2,
+		       r+2, c - 1, r-2, c-1,
+		       r+2,c+1, r-2, c+1};
+	for (int i = 0; i < 16; i+=2){
 	    int nextRow = moves[i];
 	    int nextCol = moves[i+1];
-	    if (row < 0 || col < 0 || col >= numCols || row >= numRows){
-		board[nextRow][nextCol] = level;
-		if (solveH(nextRow, nextCol, level+ 1)){
+	    //System.out.println(level);
+	    if (!(nextRow < 0 || nextCol < 0 || nextCol >= numCols || nextRow >= numRows)){
+		board[r][c] = level;
+		if (solveH(nextRow, nextCol, level + 1)){
+		    //board[r][c] = level;
 		    return true;
 		}
-		board[nextRow][nextCol] = 0;
+		board[r][c] = 0;
+		//return false;
 	    }
 	}
-	return false;
-      
+	return false;	    
     }
 
         
