@@ -1,5 +1,6 @@
 public class KnightBoard{
     private int[][] board;
+    public int[][] heuristic;
     private int numRows;
     private int numCols;
     private int[][] moves = {{1, -2}, {1, 2},
@@ -8,12 +9,18 @@ public class KnightBoard{
 			   {2,1}, {-2, 1}};
 
     public static void main(String[] args){
-	KnightBoard n = new KnightBoard(7,7);
-	System.out.println(n.solve(0,0));
-	System.out.println(n);
-	n = new KnightBoard(5,5);
-	System.out.println(n.countSolutions(0,0));
-	System.out.println(n);
+	KnightBoard n = new KnightBoard(50,50);
+	//System.out.println(n.solve(0,0));
+	//System.out.println(n);
+	//n = new KnightBoard(5,5);
+	//System.out.println(n.countSolutions(0,0));
+	//System.out.println(n);
+	for (int r = 0; r < n.heuristic.length; r++){
+	    for (int c = 0; c < n.heuristic[r].length; c++){
+		System.out.print(n.heuristic[r][c]);
+	    }
+	    System.out.println();
+	}
 		
 	
 	
@@ -26,6 +33,8 @@ public class KnightBoard{
 	board = new int[startingRows][startingCols];
 	numRows = startingRows;
 	numCols = startingCols;
+	heuristic = new int[startingRows][startingCols];
+	heuristic();
     }
 	
     //see format for toString below
@@ -132,6 +141,32 @@ public class KnightBoard{
 	}
 
 	return total;
+    }
+
+    private int countHeuristic(int r, int c, int level){
+	return 0;
+    }
+
+    //Finds shortest next path and returns it [row,col]
+    private int findShortestNext(int r, int c){
+	return 0;
+    }
+
+    //Creates heurisitic
+    private void heuristic(){
+	
+	int size = numRows*numCols;
+	for(int i = 0; i < size; i++){
+	    int countMoves = 0;
+	    for(int[] set: moves){
+		int nextRow = i/numRows + set[0];
+		int nextCol = i%numCols + set[1];
+		if (!(nextRow < 0 || nextCol < 0 || nextCol >= numCols || nextRow >= numRows)){
+		    countMoves++;
+		}
+	    }
+	    heuristic[i/numRows][i%numCols] = countMoves;
+	}
     }
 
 }
