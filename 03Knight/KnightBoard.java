@@ -11,6 +11,10 @@ public class KnightBoard{
 	KnightBoard n = new KnightBoard(7,7);
 	System.out.println(n.solve(0,0));
 	System.out.println(n);
+	n = new KnightBoard(5,5);
+	System.out.println(n.countSolutions(0,0));
+	System.out.println(n);
+		
 	
 	
     }
@@ -102,8 +106,32 @@ public class KnightBoard{
 	return false;	    
     }
     
-    public int countSolutions(){
-	return 1;
-    } 
+    public int countSolutions(int startingRow, int startingCol){
+	checkConditions(startingRow, startingCol);
+	return countH(startingRow, startingCol, 1);
+    }
+
+    private int countH(int r, int c, int level){
+	int total = 0;
+	if (board[r][c] != 0){
+	    return 0;
+	}
+	if (numRows * numCols == level){
+	    return 1;
+	}
+	for (int i = 0; i < 8; i++){
+	    int nextRow = r + moves[i][0];
+	    int nextCol = c + moves[i][1];
+	    if (nextRow < 0 || nextCol < 0 || nextCol >= numCols || nextRow >= numRows){
+	    }
+	    else{
+		board[r][c] = level;
+		total += countH(nextRow, nextCol, level+1);
+		board[r][c] = 0;
+	    }
+	}
+
+	return total;
+    }
 
 }
