@@ -9,7 +9,7 @@ public class KnightBoard{
 
     public static void main(String[] args){
 	KnightBoard n = new KnightBoard(7,7);
-	System.out.println(n.solve(3,3));
+	System.out.println(n.solve(0,0));
 	System.out.println(n);
 	
 	
@@ -87,7 +87,9 @@ public class KnightBoard{
 	    int nextRow = r + moves[i][0];
 	    int nextCol = c + moves[i][1];
 	    //System.out.println(level);
-	    if (!(nextRow < 0 || nextCol < 0 || nextCol >= numCols || nextRow >= numRows)){
+	    if (nextRow < 0 || nextCol < 0 || nextCol >= numCols || nextRow >= numRows){
+	    }
+	    else{
 		board[r][c] = level;
 		if (solveH(nextRow, nextCol, level + 1)){
 		    //board[r][c] = level;
