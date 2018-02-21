@@ -11,7 +11,7 @@ public class KnightBoard{
 			   {1,-2}, {-2, 1}};
 
     public static void main(String[] args){
-	KnightBoard n = new KnightBoard(5,10);
+	KnightBoard n = new KnightBoard(7,7);
 	System.out.println(n.solve(3,3));
 	//System.out.println(n);
 	//n = new KnightBoard(5,5);
@@ -151,50 +151,7 @@ public class KnightBoard{
     }
 
     private boolean solveFast(int r, int c, int level){
-	if (board[r][c] != 0){
-	    return false;
-	}
-	if (numRows * numCols == level){
-	    board[r][c] = level;
-	    return true;
-	}
 
-	int min = 10;
-	ArrayList<int[]> poss = new ArrayList<int[]>();
-	for (int i = 0; i < 8; i ++){
-	    int nextRow = r + moves[i][0];
-	    int nextCol = c + moves[i][1];
-	    if (nextRow < 0 || nextCol < 0 || nextCol >= numCols || nextRow >= numRows){
-	    }
-	    else{
-		heuristic[nextRow][nextCol] -= 1;
-		//printH();
-		if (heuristic[nextRow][nextCol] < min){
-		    min = heuristic[nextRow][nextCol];
-		}
-	    }
-	}
-
-	for (int i = 0; i < 8; i ++){
-	    int nextRow = r + moves[i][0];
-	    int nextCol = c + moves[i][1];
-	    if (nextRow < 0 || nextCol < 0 || nextCol >= numCols || nextRow >= numRows){
-	    }
-	    else{
-		if (heuristic[nextRow][nextCol] == min){
-		    int[] next = {nextRow, nextCol};
-		    poss.add(next);
-		}
-	    }
-	}
-	for (int[] x: poss){
-	    board[r][c] = level;
-	    if (solveH(x[0], x[1], level + 1)){
-		//board[r][c] = level;
-		return true;
-	    }
-	    board[r][c] = 0;
-	}
 	return false;
 	
     }
