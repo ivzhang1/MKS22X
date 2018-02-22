@@ -11,8 +11,8 @@ public class KnightBoard{
 			   {1,-2}, {-2, 1}};
 
     public static void main(String[] args){
-	KnightBoard n = new KnightBoard(7,7);
-	System.out.println(n.solve(0,1));
+	KnightBoard n = new KnightBoard(13,13);
+	System.out.println(n.solve(3,3));
 	//System.out.println(n);
 	//n = new KnightBoard(5,5);
 	//System.out.println(n.countSolutions(3,3));
@@ -82,7 +82,7 @@ public class KnightBoard{
 	return true;
     }
     
-    public int solve(int startingRow, int startingCol){
+    public boolean solve(int startingRow, int startingCol){
 	checkConditions(startingRow, startingCol);
 	//return solveH(startingRow, startingCol, 1);
 	return solveFast(startingRow, startingCol,1);
@@ -153,11 +153,12 @@ public class KnightBoard{
     private boolean solveFast(int r, int c, int level){
 	if (numRows * numCols == level){
     	    board[r][c] = level;
-    	    return 0;
+    	    return true;
     	}
     	if (board[r][c] != 0){
-    	    return 1;
+    	    return false;
     	}
+	
 	int min = 10;
 	for (int i = 0; i < 8; i++){
 	    int nextRow = r + moves[i][0];
@@ -168,17 +169,35 @@ public class KnightBoard{
 	    else{
 		heuristic[nextRow][nextCol] =  heuristic[nextRow][nextCol] - 1;
 		int num = heuristic[nextRow][nextCol];
-		if (num > 0 && num < min){
+		if (board[nextRow][nextCol] == 0 && num < min){
 		    min = num;
 		}
 	    } 
 	}
+
+	for (int i = 0; i < 8; i++){
+	    int nextRow = r + moves[i][0];
+	    int nextCol = c + moves[i][1];
+	    if (nextRow < 0 || nextCol < 0 || nextCol >= numCols || nextRow >= numRows){	
+	    }
+	    else {
+		if (heuristic[nextRow][nextCol] == min){
+		    //heuristic[nextRow][nextCol] = -1;
+		    //System.out.print(this);
+		    //printH();
+		    board[r][c] = level;
+		    if (solveFast(nextRow,nextCol, level + 1)){
+			return true;
+		    }
+		    heuristic[nextRow][nextCol] = min;
+		    board[r][c] = 0;
+		}
+	    }
+	}
+	    
 	//printH();
-
 	
-
-	
-	return min;
+	return false;
 	
     }
 	
