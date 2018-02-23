@@ -11,8 +11,8 @@ public class KnightBoard{
 			   {1,-2}, {-2, 1}};
 
     public static void main(String[] args){
-	KnightBoard n = new KnightBoard(13,13);
-	System.out.println(n.solve(3,3));
+	KnightBoard n = new KnightBoard(60,60);
+	System.out.println(n.solveFast(0,0));
 	//System.out.println(n);
 	//n = new KnightBoard(5,5);
 	//System.out.println(n.countSolutions(3,3));
@@ -150,6 +150,12 @@ public class KnightBoard{
 	return total;
     }
 
+    public boolean solveFast(int startingRow, int startingCol){
+	checkConditions(startingRow, startingCol);
+	//return solveH(startingRow, startingCol, 1);
+	return solveFast(startingRow, startingCol,1);
+    }
+    
     private boolean solveFast(int r, int c, int level){
 	if (numRows * numCols == level){
     	    board[r][c] = level;
