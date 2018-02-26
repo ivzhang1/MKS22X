@@ -100,11 +100,14 @@ public class RecursionTest{
 			       (sqrtRecurs >= sqrtMath * 0.999 && sqrtRecurs <= sqrtMath * 1.001)
 			       );
 	    System.out.println();
-	}	
+	}
+
+	System.out.println(x.sqrt(0.000001));
+	System.out.println(Math.sqrt(0.000001));
 
 	System.out.println(x.isPossibleSum(10,55));
 
-	System.out.println(x.isPossibleSum(10,10));
+	System.out.println(x.isPossibleSum(10,1));
 
 	System.out.println(x.isPossibleSum(10,5));
 

@@ -31,7 +31,7 @@ public class Recursion{
 	if (n < 0){
 	    throw new IllegalArgumentException();
 	}
-	return sqrtHelper(n * 1.0, n/(2.0), 0.001);
+	return sqrtHelper(n * 1.0, n/(2.0), 0.000001);
     }
 
     public static double sqrtHelper(double n, double guess, double tolerance){
