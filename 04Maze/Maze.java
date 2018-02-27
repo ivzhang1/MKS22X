@@ -179,11 +179,11 @@ public class Maze{
 	//System.out.println(total);
 	//System.out.println(this);
         int sum = solve(row+1, col) + solve(row-1,col) + solve(row,col+1) + solve(row, col-1);
-	if (sum < 1){
+	if (sum < 0){
 	    maze[row][col] = '.';
 	    return -1;
 	}
-	return total + sum;
+	return total + sum + 1;
 	
 
         //COMPLETE SOLVE

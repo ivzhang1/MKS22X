@@ -5,7 +5,7 @@ public class Driver{
 	f = new Maze("data1.dat");//true animates the maze.
         
 	f.setAnimate(true);
-	f.solve();
+	System.out.println(f.solve());
 
 	System.out.println(f);
     }
