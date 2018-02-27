@@ -134,8 +134,7 @@ public class Maze{
 
 	//and start solving at the location of the s.
 
-	//return solve(???,???);
-	return 0;
+	return solve(startR,startC);
 
     }
 
@@ -159,19 +158,37 @@ public class Maze{
     */
     private int solve(int row, int col){ //you can add more parameters since this is private
 
-
+	int total = 0;
         //automatic animation! You are welcome.
-        if(animate){
+        //if(animate){
+            //clearTerminal();
+            //System.out.println(this);
 
-            clearTerminal();
-            System.out.println(this);
+	    //wait(20);
+	    //}
 
-            wait(20);
-        }
+	if(maze[row][col] == 'E'){
+	    return 1;
+	}
+	
+	if(maze[row][col] == '.' || maze[row][col] == '#' || maze[row][col] == '@'){
+	    return 0;
+	}
+	
+	maze[row][col] = '@';
+	//System.out.println(total);
+	//System.out.println(this);
+        int sum = solve(row+1, col) + solve(row-1,col) + solve(row,col+1) + solve(row, col-1);
+	if (sum < 1){
+	    maze[row][col] = '.';
+	    return -1;
+	}
+	return total + sum;
+	
 
         //COMPLETE SOLVE
 
-        return -1; //so it compiles
+        //return total; //so it compiles
     }
 
     public String toString(){

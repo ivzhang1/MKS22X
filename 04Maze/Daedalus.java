@@ -49,13 +49,8 @@ public class Daedalus {
 	
 	File fakeText = new File("Mazes/" + fileName);
 	Scanner infClone = new Scanner(fakeText);
-	int longest = 0;
 	int rows = 0;
 	while(infClone.hasNextLine()){
-	    String liney = infClone.nextLine();
-	    if (liney.length() >= longest){
-		longest = liney.length();
-	    }
 	    rows++;
 	}
 	
