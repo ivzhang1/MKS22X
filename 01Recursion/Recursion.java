@@ -1,3 +1,4 @@
+import java.lang.Math;
 public class Recursion{
     
     public int fact(int n){
@@ -31,11 +32,14 @@ public class Recursion{
 	if (n < 0){
 	    throw new IllegalArgumentException();
 	}
-	return sqrtHelper(n * 1.0, n/(2.0), 0.000001);
+	if (n == 0){
+	    return 0;
+	}
+	return sqrtHelper(n * 1.0, n/(2.0), 0.0001);
     }
 
     public static double sqrtHelper(double n, double guess, double tolerance){
-	if ((guess * guess - n) < tolerance && !(guess * guess < n)  ){
+	if (Math.abs(guess * guess - n)/n < tolerance && !(guess * guess < n)  ){
 	    return guess;
 	}
 
