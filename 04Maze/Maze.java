@@ -10,8 +10,8 @@ public class Maze{
     private int startC;
     private int[][] moves = {{0,1}, {0,-1}, {1,0}, {-1,0}};
     private boolean animate;//false by default
-    
     /*Constructor loads a maze text file, and sets animate to false by default.
+
       1. The file contains a rectangular ascii maze, made with the following 4 characters:
       '#' - Walls - locations that cannot be moved onto
       ' ' - Empty Space - locations that can be moved onto
@@ -22,18 +22,15 @@ public class Maze{
       2. The maze has a border of '#' around the edges. So you don't have to check for out of bounds!
 
 
-      3. When the file is not found OR the file is invalid (not exactly 1 E and 1 S) then: throw Exception then Main prints out error.
-      InvalidStateException
+      3. When the file is not found OR the file is invalid (not exactly 1 E and 1 S) then: 
+
+      throw a FileNotFoundException or IllegalStateException
 
     */
 
-    public Maze(String filename){
-	try {
-	    kernelPlanter(filename);
-	} catch(FileNotFoundException e){
-	    System.out.println("File Not Found");
-	    System.exit(1);
-	}
+    public Maze(String filename) throws FileNotFoundException{
+
+	kernelPlanter(filename);
 
 	int countS = 0;
 	int countE = 0;
@@ -177,13 +174,17 @@ public class Maze{
 	
 	maze[row][col] = '@';
 	//System.out.println(total);
-	//System.out.println(this);
+	System.out.println(this);
         int sum = solve(row+1, col) + solve(row-1,col) + solve(row,col+1) + solve(row, col-1);
-	if (sum < 0){
-	    maze[row][col] = '.';
-	    return -1;
+	//System.out.println(sum);
+	if (sum > 0){
+	    total+=1;
+	    return total;
 	}
-	return total + sum + 1;
+	else{
+	    maze[row][col] = '.';
+	    return 0;
+	}
 	
 
         //COMPLETE SOLVE
