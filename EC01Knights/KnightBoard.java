@@ -11,7 +11,7 @@ public class KnightBoard{
 			   {1,-2}, {-2, 1}};
 
     public static void main(String[] args){
-	KnightBoard n = new KnightBoard(91,91);
+	KnightBoard n = new KnightBoard(90,90);
 	System.out.println(n.solveFast(0,0));
 	//System.out.println(n);
 	//n = new KnightBoard(5,5);
