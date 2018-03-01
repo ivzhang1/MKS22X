@@ -153,16 +153,17 @@ public class Maze{
       Note: This is not required based on the algorithm, it is just nice visually to see.
       All visited spots that are part of the solution are changed to '@'
     */
+    private int totMoves = 0;
     private int solve(int row, int col){ //you can add more parameters since this is private
 
 	int total = 0;
         //automatic animation! You are welcome.
-        //if(animate){
-            //clearTerminal();
-            //System.out.println(this);
+        if(animate){
+            clearTerminal();
+            System.out.println(this);
 
-	    //wait(20);
-	    //}
+	    wait(20);
+	}
 
 	if(maze[row][col] == 'E'){
 	    return 1;
@@ -171,25 +172,27 @@ public class Maze{
 	if(maze[row][col] == '.' || maze[row][col] == '#' || maze[row][col] == '@'){
 	    return 0;
 	}
+
+	for (int[] move: moves){
+	    maze[row][col] = '@';
+	    total+=solve(row+move[0],col+move[1]);
+	    if (total > 0){
+		//System.out.println(total);
+		totMoves += 1;
+		System.out.println(totMoves);
+		return total;
+	    }
+	    total = 0;
+	}
+	maze[row][col] = '.';
 	
-	maze[row][col] = '@';
-	//System.out.println(total);
-	System.out.println(this);
-        int sum = solve(row+1, col) + solve(row-1,col) + solve(row,col+1) + solve(row, col-1);
+
+	//System.out.println(total)
+	
 	//System.out.println(sum);
-	if (sum > 0){
-	    total+=1;
-	    return total;
-	}
-	else{
-	    maze[row][col] = '.';
-	    return 0;
-	}
-	
 
         //COMPLETE SOLVE
-
-        //return total; //so it compiles
+	return -1;//so it compiles
     }
 
     public String toString(){
