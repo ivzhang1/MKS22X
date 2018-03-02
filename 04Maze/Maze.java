@@ -179,8 +179,8 @@ public class Maze{
 	    if (total > 0){
 		//System.out.println(total);
 		totMoves += 1;
-		System.out.println(totMoves);
-		return total;
+		//System.out.println(totMoves);
+		return totMoves;
 	    }
 	    total = 0;
 	}

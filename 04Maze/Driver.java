@@ -5,11 +5,13 @@ public class Driver{
 	Maze f;
 
 	try {
-	    f = new Maze("data3.dat");//true animates the maze.
+	    // System.out.println("TestMazes/"+ i + ".dat");
+	    f = new Maze("TestMazes/"+ 6 + ".dat");//true animates the maze.
 	    f.setAnimate(true);
 	    System.out.println(f.solve());
 
 	    System.out.println(f);
+
 	}catch(FileNotFoundException e){
 	    System.out.println("Bad file");
 	    System.exit(1);
