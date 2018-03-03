@@ -6,7 +6,7 @@ public class Driver{
 
 	try {
 	    // System.out.println("TestMazes/"+ i + ".dat");
-	    f = new Maze("TestMazes/"+ 6 + ".dat");//true animates the maze.
+	    f = new Maze("TestMazes/"+ 8 + ".dat");//true animates the maze.
 	    f.setAnimate(true);
 	    System.out.println(f.solve());
 
