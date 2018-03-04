@@ -157,12 +157,12 @@ public class Maze{
     private int solve(int r, int c){ //you can add more parameters since this is private
 
         //automatic animation! You are welcome.
-        //if(animate){
-        //    clearTerminal();
-        //    System.out.println(this);
+        if(animate){
+	    clearTerminal();
+	    System.out.println(this);
 
-	//   wait(20);
-	    //}
+	    wait(20);
+	}
 
 	if (maze[r][c] == 'E'){
 	    return 1;
