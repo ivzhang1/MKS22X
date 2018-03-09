@@ -14,7 +14,7 @@ public class KnightBoard{
 			   {1,-2}, {-2, 1}};
 
     public static void main(String[] args){
-	KnightBoard n = new KnightBoard(9,9);
+	KnightBoard n = new KnightBoard(90,90);
 	System.out.println(n.solveFast(0,0));
 	//System.out.println(n);
 	//n = new KnightBoard(5,5);
@@ -185,12 +185,12 @@ public class KnightBoard{
     }
     
     private boolean solveFast(int r, int c, int level){
-	if(animate){
-	    clearTerminal();
-	    System.out.println(this);
+	// if(animate){
+	//     clearTerminal();
+	//     System.out.println(this);
 
-	    wait(20);
-	}
+	//     wait(20);
+	// }
     	if (board[r][c] != 0){
     	    return false;
     	}
