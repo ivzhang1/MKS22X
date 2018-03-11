@@ -1,10 +1,11 @@
 import java.util.*;
+import java.lang.Math;
 import java.io.*;
 
 public class USACO{
 
     public static void main(String[] args){
-	System.out.println(USACO.bronze("makelake/makelake.1.in"));
+	System.out.println(USACO.bronze("makelake/makelake.2.in"));
 	System.out.println(USACO.silver("ctravel/ctravel.1.in"));
     }
     
@@ -15,6 +16,7 @@ public class USACO{
 	int instructions;
 	int[][] instruction;
 	int[][] board;
+	int depth = 0;
 
 	try{
 	    File f = new File(filename);
@@ -40,12 +42,12 @@ public class USACO{
     		}
 	    }
 
-	    for (int i = 0; i < row; i++){
-	    	for (int j = 0; j < col; j++){
-	    		System.out.print(board[i][j] + " ");
-	    	}
-	    	System.out.println();
-	    }
+	    // for (int i = 0; i < row; i++){
+	    // 	for (int j = 0; j < col; j++){
+	    // 		System.out.print(board[i][j] + " ");
+	    // 	}
+	    // 	System.out.println();
+	    // }
 
 
 	    instruction = new int[instructions][3];
@@ -66,7 +68,7 @@ public class USACO{
 
 		while (step > 0){
 		    int maxyMax = getMax(cowPos, board, row, col);
-		    System.out.println(maxyMax);
+		    //System.out.println(maxyMax);
 		    for (int[] posh: cowPos){
 			if (posh[0] >= 0 && posh[0] < row && posh[1] >= 0 && posh[1] < col && board[posh[0]][posh[1]] == maxyMax){
 			    board[posh[0]][posh[1]] -= 1;
@@ -74,17 +76,17 @@ public class USACO{
 		    }
 		    step -= 1;
 		}
-		System.out.println();
+		//System.out.println();
 	    }
-	    
+
 	    for (int i = 0; i < row; i++){
-	    	for (int j = 0; j < col; j++){
-	    		System.out.print(board[i][j] + " ");
-	    	}
-	    	System.out.println();
+		for (int j = 0; j < col; j++){
+		    int deep = board[i][j];
+		    if (deep < elevation){
+			depth += elevation - deep;
+		    }
+		}
 	    }
-
-
 	    
 
 		
@@ -92,7 +94,7 @@ public class USACO{
 	    System.out.println("File Not Found");
 	    System.exit(1);
 	}
-	return 0;
+	return depth * 72 * 72;
     }
 
     private static int getMax(int[][] pos, int[][] board, int row, int col){
