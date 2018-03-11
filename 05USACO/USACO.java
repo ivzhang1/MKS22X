@@ -1,12 +1,11 @@
 import java.util.*;
-import java.lang.Math;
 import java.io.*;
 
 public class USACO{
 
     public static void main(String[] args){
-	System.out.println(USACO.bronze("makelake/makelake.2.in"));
-	System.out.println(USACO.silver("ctravel/ctravel.1.in"));
+	//System.out.println(USACO.bronze("makelake/makelake.2.in"));
+	System.out.println(USACO.silver("ctravel/ctravel.3.in"));
     }
     
     public static int bronze(String filename){
@@ -111,27 +110,94 @@ public class USACO{
 	
 
     public static int silver(String filename){
+	int row = 0;
+	int col = 0;
+	int time = 0;
+	int startX;
+	int startY;
+	int endX;
+	int endY;
 	char[][] board;
 
 	try{
-	    int row = 0;
-	    int col = 0;
+	    /////////////////////PARSING////////////////////////////////////////
+	    ////////////////////////////////////////////////////////////////////
+	    ////////////////////////////////////////////////////////////////////
+	    ////////////////////////////////////////////////////////////////////
 	    File f = new File(filename);
 	    Scanner s = new Scanner(f);
 	    String firstL = s.nextLine();
 	    String[] lineOne = firstL.split(" ");
 	    row = Integer.parseInt(lineOne[0]);
 	    col = Integer.parseInt(lineOne[1]);
-	    board = new char[row][col];
-	    System.out.println(board.length + " " + board[0].length);
- 	    
-	}catch(FileNotFoundException e){
-	    System.out.println("File Not Found");
-	    System.exit(1);
-	}
+	    time = Integer.parseInt(lineOne[2]);
 
+	    board = new char[row][col];
+
+	    //System.out.println(board.length + " " + board[0].length + " " + elevation + " " + instructions);
+	    
+	    for (int i = 0; i < row; i++){
+	    	String liney = s.nextLine();
+
+    		for (int j = 0; j < col; j++){
+		    board[i][j] = liney.charAt(j);
+    		}
+	    }
+
+	    // for (int i = 0; i < row; i++){
+	    // 	for (int j = 0; j < col; j++){
+	    // 		System.out.print(board[i][j] + " ");
+	    // 	}
+	    // 	System.out.println();
+	    // }
+
+
+	    String tempS = s.nextLine();
+	    String[] linez = tempS.split(" ");
+	    startX = Integer.parseInt(linez[0]) - 1;
+	    startY = Integer.parseInt(linez[1]) - 1;
+	    endX = Integer.parseInt(linez[2]) - 1;
+	    endY = Integer.parseInt(linez[3]) - 1;
+	    //System.out.println(startX  + " " + startY + " " + endX + " " + endY);
+	    ////////////////////////////////////////////////////////////////////
+	    ////////////////////////////////////////////////////////////////////
+	    ////////////////////////////////////////////////////////////////////
+	    
+	    int[][] jekyll = new int[row][col];
+	    int[][] hyde = new int[row][col];
+	    
+	    jekyll[startX][startY] = 1;
+	    while (time > 0){
+		for (int i = 0; i < row; i++){
+		    for (int j = 0; j < col; j++){
+			if (jekyll[i][j] != 0){
+			    int[][] poss = {{i+1,j}, {i-1, j}, {i, j+1}, {i, j-1}};
+			    for (int[] possible: poss){
+				if (possible[0] >= 0 && possible[0] < row && possible[1] >= 0 && possible[1] < col){
+				    if(board[possible[0]][possible[1]] != '*'){
+					hyde[possible[0]][possible[1]] += jekyll[i][j];
+				    }
+				}
+			    }
+			    jekyll[i][j] = 0;
+			}
+		    
+		    }
+		
+		}
+		
+		jekyll = hyde;
+		hyde = new int[row][col];
+		time -= 1;
+	    }
+	    return jekyll[endX][endY];
+
+	}catch(FileNotFoundException e){
+	    System.out.println("FILE!");
+	}
 	return 0;
     }
+
 
 
 
