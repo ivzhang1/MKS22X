@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class QuickSelect{
+public class Quick{
     
 
     public static void main(String[] args){
@@ -8,6 +8,13 @@ public class QuickSelect{
 	System.out.println(partition(test, 0, test.length-1));
     }
 
+    public static void quicksort(int[] ary){
+    }
+
+    public static int quickselect(int[] ary){
+	return 0;
+    }
+    
     private static boolean partition(int[] parti, int start, int end){
 	
 	Random rand = new Random();
