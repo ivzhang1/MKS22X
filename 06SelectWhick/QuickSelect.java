@@ -1,59 +1,52 @@
+import java.util.Random;
+
 public class QuickSelect{
     
 
     public static void main(String[] args){
-	int[] test = {20,21,20};//, 111, 27, 17, 13, 21, 20, 14, 14, 81};
-	System.out.println(partition(test));
+	int[] test = {-100,999,100,4,1,0,3,2,999,999,999};
+	System.out.println(partition(test, 0, test.length-1));
     }
 
-    private static boolean partition(int[] parti){
-	int pivot = parti.length/2;
-	if (pivot > 0){
-	    int pivotal = parti[pivot];
-	    
-	    int bigInd = parti.length-1;
-	    int big = parti[bigInd];
+    private static boolean partition(int[] parti, int start, int end){
+	
+	Random rand = new Random();
+	int pivot = rand.nextInt((end-start)) + start;
+	int pivotal = parti[pivot];
 
-	    int smallInd = 0;
-	    int small = parti[smallInd];
-	    
-	    swap(parti, bigInd, pivot);
-
-	    bigInd -= 1;
-	    big = parti[bigInd];
-	    
-	    while (smallInd <= bigInd){
-		while (small > pivotal  && bigInd > 0){// && bigInd > smallInd){
-		    swap(parti, smallInd, bigInd);
-		    bigInd -= 1;
-		    small = parti[smallInd];
-		    for (int k = 0; k < parti.length; k++){
-			System.out.print(parti[k] + " ");
-		    }
-		    System.out.println();
-		}
-        
-		smallInd+=1;
-		small = parti[smallInd];
+	int initEnd = end;
+	swap(parti, pivot, end);
+	end -= 1;
+	
+	while (start < end){
+	    while(parti[start] >= pivotal && end > start){
+		swap(parti, start, end);
+		end-=1;
+		//toString(parti);
+		//System.out.println("pivot: " + pivot + " pivotal:" + pivotal+ " start:" + start + " big:" + end);
 	    }
-
-	    if (bigInd == 0){
-		swap(parti, 0, parti.length-1);
-	    }
-	    else{
-		swap(parti, smallInd, parti.length-1);
-	    }
+	    start+=1;
 	}
-  
+	//toString(parti);
 
-	//for (int k = 0; k < parti.length; k++){
-	//    System.out.print(parti[k] + " ");
-	//}
-	//System.out.println(parti[3] + " " + parti[5]);
-	//swap(parti, 3, 5);
-	//System.out.println(parti[3] + " " + parti[5]);
-	return true;	
+	if (parti[initEnd] > parti[end]){
+	    swap(parti, initEnd, end + 1);
+	}
+	else{
+	    swap(parti, initEnd, end);
+	}
+	
+	//toString(parti);
+	//System.out.println("pivot: " + pivot + " pivotal:" + pivotal+ " start:" + start + " big:" + end);
+	return true;
 		
+    }
+
+    private static void toString(int[] parti){
+	for (int k = 0; k < parti.length; k++){
+	    System.out.print(parti[k] + " ");
+	}
+	System.out.println();
     }
 
     private static void swap(int[] base, int one, int two){
