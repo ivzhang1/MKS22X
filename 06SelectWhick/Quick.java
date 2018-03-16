@@ -2,7 +2,7 @@ public class Quick{
     
 
     public static void main(String[] args){
-	int[] test = {-100,999,100,4,1,0,3,2,999,999,999};
+	int[] test = {-100,12,100,4,1,0,3,2,90,99,899};
 	System.out.println(partition(test, 0, 5));
     }
 
@@ -16,13 +16,34 @@ public class Quick{
 
     private static int partition(int[] parti, int start, int end){
 	int i = (int)(Math.random() * ((end-start) + 1) + start);
+	int pivotal = parti[i];
+	int starty = start;
+	swap(parti, i, start);
+	start++;
+
 	while (start <= end){
-	    
+	    toString(parti);
+	    if (parti[start] == pivotal){
+		swap(parti, start, i);
+		i++;
+	    }
+	    else if (parti[start] > pivotal){
+		swap(parti, start, end);
+		end-=1;
+	    }
+	    else{
+		swap(parti, i, start);
+		i++;
+		start++;
+	    }
 	}
-
-	
+	toString(parti);
+	swap(parti, starty, end);
+	System.out.println(i + " " + end + " " + pivotal);
+	toString(parti);
+	return 0;
     }
-
+    
     private static void swap(int[] base, int one, int two){
 	int temp = base[one];
 	base[one] = base[two];
