@@ -14,5 +14,11 @@ public class QuickDriverTwo{
 	Quick.quicksort(ary2);
 	System.out.println("Your sorted array" + "\n" + Arrays.toString(ary2));
 	System.out.println("The correct array\n[-30, -23, -12, -3, 1, 1, 2, 2, 3, 4, 6, 6, 8, 12, 32, 45, 99, 123]");
+
+
+
+	int[] ary3 = {-1,3,3,-1,3,3,3,3,3,3,3,3,-1};
+	Quick.quicksort(ary3);
+	System.out.println("Your sorted array" + "\n" + Arrays.toString(ary3));
     }
 }
