@@ -9,24 +9,38 @@ public class Quick{
 	for (int i = 0; i < test.length; i++){
 	    System.out.println(quickselect(test, i));;
 	}
+	int[] testy = {1000, 999,999,999,4,1,0,3,2,999,999,100,100,-10000, 10212, -19212, 23, 12};
+	quicksort(testy);
+	toString(testy);
+	
     }
 
     public static void quicksort(int[] ary){
+	quicksorty(ary, 0, ary.length-1);
+    }
+
+    private static void quicksorty(int[] ary, int start, int end){
+	if (start < end){
+	    int party = partition(ary, start, end);
+	    //System.out.println(start + " " + end + " " + party);
+	    quicksorty(ary, start, party-1);
+	    quicksorty(ary, party+1, end);
+	}
     }
 
     public static int quickselect(int[] ary, int k){
-	return quickHelpy(ary, k, 0, ary.length - 1);
+	return quickselecty(ary, k, 0, ary.length - 1);
     }
 
-    private static int quickHelpy(int[] ary, int k, int starty, int curr){
+    private static int quickselecty(int[] ary, int k, int starty, int curr){
 	int party = partition(ary, starty, curr);
 	if (party == k){
 	    return ary[k];
 	}
 	if (k > party){
-	    return quickHelpy(ary, k, party + 1, ary.length - 1);
+	    return quickselecty(ary, k, party + 1, ary.length - 1);
 	}	
-	return quickHelpy(ary, k, 0, party - 1);
+	return quickselecty(ary, k, 0, party - 1);
     }
 
 
