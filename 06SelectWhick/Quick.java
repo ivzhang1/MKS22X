@@ -1,21 +1,37 @@
 public class Quick{
-    
+    private int current = 0;
 
     public static void main(String[] args){
-	int[] test = {999,999,999,4,1,0,3,2,999,999,100};
-	System.out.println(partition(test, 0, 10));
+	int[] test = {1000, 999,999,999,4,1,0,3,2,999,999,100,100,-10000};
+	//System.out.println(partition(test, 0, 10));
 	toString(test);
+	////SHOULD PRINT THE ARRAY IN ORDER FROM LEAST TO GREATEST
+	for (int i = 0; i < test.length; i++){
+	    System.out.println(quickselect(test, i));;
+	}
     }
 
     public static void quicksort(int[] ary){
     }
 
     public static int quickselect(int[] ary, int k){
-	return 0;
+	return quickHelpy(ary, k, 0, ary.length - 1);
+    }
+
+    private static int quickHelpy(int[] ary, int k, int starty, int curr){
+	int party = partition(ary, starty, curr);
+	if (party == k){
+	    return ary[k];
+	}
+	if (k > party){
+	    return quickHelpy(ary, k, party + 1, ary.length - 1);
+	}	
+	return quickHelpy(ary, k, 0, party - 1);
     }
 
 
-    ///THIS IS INCLUSIVE
+    ///THIS IS INCLUSIVE, includes end
+    //@returns current location
     private static int partition(int[] parti, int start, int end){
 	if (parti.length < 2){
 	    return start;
@@ -27,7 +43,7 @@ public class Quick{
 
 	swap(parti, i, start);
 
-	System.out.println(pivotal);
+	//System.out.println(pivotal);
 	//toString(parti);
 	
 	while (small <= big){
@@ -53,7 +69,7 @@ public class Quick{
 
 	//toString(parti);
 
-	return 0;
+	return big;
     }
     
     private static void swap(int[] base, int one, int two){
