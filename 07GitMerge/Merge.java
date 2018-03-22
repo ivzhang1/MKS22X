@@ -11,11 +11,11 @@ public class Merge{
 
     public static void msort(int[] data, int[] temp, int lo, int hi){
 	if (lo < hi){
+	    for (int i = lo; i <= hi; i++){
+		temp[i] = data[i];
+	    }
 	    int mid = (hi + lo)/2;
 
-	    for (int i = 0; i < temp.length; i++){
-		
-	    }
 	    msort(temp, data, lo, mid);
 	    msort(temp, data, mid+1, hi);
 	    merge(data, temp, lo, mid, hi);
@@ -23,14 +23,12 @@ public class Merge{
     }
 
     public static void merge(int[] data, int[] temp, int lo, int mid, int hi){
-
+	int curr = lo;
 	
 	while (lo <= hi){
-	    toString(data);
-	    if (temp[lo] < temp[hi]){
+	    if (temp[lo] <= temp[hi]){
 		data[curr] = temp[lo];
 		lo++;
-		
 	    }
 
 	    else{
@@ -39,6 +37,9 @@ public class Merge{
 	    }
 	    curr++;
 	}
+
+	
+	System.out.println(curr);
 	
 
 	
