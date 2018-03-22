@@ -134,7 +134,7 @@ public class Quick{
     }
 
 
-    private static void toString(int[] parti){
+    public static void toString(int[] parti){
 	for (int k = 0; k < parti.length; k++){
 	    System.out.print(parti[k] + ", ");
 	}
@@ -189,12 +189,17 @@ public class Quick{
 	while (small <= big){
 	    //toString(parti);
 	    //System.out.println("LOL: "  + "small: " + small + " big: " + big + " i: " + i);
+	    //toString(parti);
+	    //System.out.println(pivotal);
 	    if (parti[small] < pivotal){
 		small++;
 	    }
-	    else if(parti[small] == pivotal && i <= end){
+	    else if (parti[small] == pivotal && i <= big){
+		//System.out.println(i);
 		swap(parti, small, i);
 		i++;
+		//toString(parti);
+		//System.out.println(pivotal);
 	    }
 	    else{
 		swap(parti, big, small);

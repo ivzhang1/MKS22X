@@ -24,16 +24,31 @@ public class Merge{
 
     public static void merge(int[] data, int[] temp, int lo, int mid, int hi){
 	int curr = lo;
+	int save = mid+1;
 	
-	while (lo <= hi){
-	    if (temp[lo] <= temp[hi]){
+	while (lo <= mid){
+	    if (temp[lo] <= temp[mid]){
 		data[curr] = temp[lo];
 		lo++;
 	    }
 
 	    else{
+		data[curr] = temp[mid];
+		mid-=1;
+	    }
+	    curr++;
+	}
+
+
+	while (hi >= save){
+	    if (temp[hi] <= temp[save]){
 		data[curr] = temp[hi];
-		hi-=1;
+		lo++;
+	    }
+
+	    else{
+		data[curr] = temp[save];
+		save-=1;
 	    }
 	    curr++;
 	}
