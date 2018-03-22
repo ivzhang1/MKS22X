@@ -1,3 +1,5 @@
+//me.dt.in.th/page/Quicksort
+
 public class Quick{
 
     public static void main(String[] args){
@@ -147,10 +149,42 @@ public class Quick{
 
     private static void quicksorty(int[] ary, int start, int end){
 	if (start < end){
-	    int party = partition(ary, start, end);
+	    
+	    int i = (int)(Math.random() * ((end-start) + 1) + start);
+	    int pivotal = ary[i];
+	    int small = start;
+	    int big = end;
+	    int x = start;
+
+	    swap(ary, i, start);
+
+	    //System.out.println(pivotal);
+	    //toString(parti);
+	
+	    while (x <= big){
+		//toString(parti);
+		//System.out.println("LOL: "  + "small: " + small + " big: " + big + " i: " + i);
+		//toString(parti);
+		//System.out.println(pivotal);
+		if (ary[x] < pivotal){
+		    swap(ary, x, small);
+		    small++;
+		    x++;
+		}
+		else if (ary[x] == pivotal){
+		    //System.out.println(i);
+		    x++;
+		    //toString(parti);
+		    //System.out.println(pivotal);
+		}
+		else{
+		    swap(ary, big, x);
+		    big-=1;
+		}
+	    }
 	    //System.out.println(start + " " + end + " " + party);
-	    quicksorty(ary, start, party-1);
-	    quicksorty(ary, party+1, end);
+	    quicksorty(ary, start, small-1);
+	    quicksorty(ary, big+1, end);
 	}
     }
 
@@ -178,31 +212,33 @@ public class Quick{
 	}
 	int i = (int)(Math.random() * ((end-start) + 1) + start);
 	int pivotal = parti[i];
-	int small = start + 1;
+	int small = start;
 	int big = end;
+	int x = start;
 
 	swap(parti, i, start);
 
 	//System.out.println(pivotal);
 	//toString(parti);
 	
-	while (small <= big){
+	while (x <= big){
 	    //toString(parti);
 	    //System.out.println("LOL: "  + "small: " + small + " big: " + big + " i: " + i);
 	    //toString(parti);
 	    //System.out.println(pivotal);
-	    if (parti[small] < pivotal){
+	    if (parti[x] < pivotal){
+		swap(parti, x, small);
 		small++;
+		x++;
 	    }
-	    else if (parti[small] == pivotal && i <= big){
+	    else if (parti[x] == pivotal){
 		//System.out.println(i);
-		swap(parti, small, i);
-		i++;
+		x++;
 		//toString(parti);
 		//System.out.println(pivotal);
 	    }
 	    else{
-		swap(parti, big, small);
+		swap(parti, big, x);
 		big-=1;
 	    }
 	}
@@ -210,11 +246,11 @@ public class Quick{
 		    
 
 
-	swap(parti, start, big);
+	//swap(parti, start, i);
 
 	//toString(parti);
 
-	return big;
+	return i;
     }
     
     private static void swap(int[] base, int one, int two){
