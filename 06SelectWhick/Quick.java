@@ -154,7 +154,7 @@ public class Quick{
 	    int pivotal = ary[i];
 	    int small = start;
 	    int big = end;
-	    int x = start;
+	    int x = start + 1;
 
 	    swap(ary, i, start);
 
