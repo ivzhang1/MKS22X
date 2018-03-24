@@ -67,8 +67,9 @@ public class Drive{
 	/*
 	 * Test your sort here!
 	 */
-	Quick.quicksort(start);
-	//Quick.toString(start);
+	//Merge.toString(start);
+	Merge.mergesort(start);
+	//Merge.toString(start);
 
 	
 	long elapsedTime = System.currentTimeMillis() - startTime;

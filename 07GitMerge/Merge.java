@@ -10,21 +10,18 @@ public class Merge{
     }
 
     public static void msort(int[] data, int[] temp, int lo, int hi){
-	if (lo < hi){
+	int mid = (hi + lo)/2;
+	if (hi > lo){
 	    for (int i = lo; i <= hi; i++){
 		temp[i] = data[i];
 	    }
-	    int mid = (hi + lo)/2;
 
-	    if (hi - lo < 1000){
-		insertionSort(data, lo, hi);
-	    }
-	    else{
-		msort(temp, data, lo, mid);
-		msort(temp, data, mid+1, hi);
-		merge(data, temp, lo, mid, hi);
-	    }
+	    msort(temp, data, lo, mid);
+	    msort(temp, data, mid+1, hi);
+	    merge(data, temp, lo, mid, hi);
 	}
+
+       
     }
 
     public static void insertionSort(int[] data, int start, int end){
@@ -70,7 +67,7 @@ public class Merge{
     }
 
     
-    private static void toString(int[] parti){
+    public static void toString(int[] parti){
 	for (int k = 0; k < parti.length; k++){
 	    System.out.print(parti[k] + ", ");
 	}
