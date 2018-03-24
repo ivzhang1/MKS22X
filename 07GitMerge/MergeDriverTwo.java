@@ -29,7 +29,8 @@ public class MergeDriverTwo{
 	// System.out.println(Arrays.toString(ary3));
 	// Merge.mergesort(ary3);
 	// System.out.println("Your sorted array" + "\n" + Arrays.toString(ary3));
-	int[] ary4 = {-1,3,4,2,3,3,21,4,5,6,1,9};
+
+	int[] ary4 = {1,3,-10,1, 0};
 	Merge.mergesort(ary4);
 	System.out.println("Your sorted array" + "\n" + Arrays.toString(ary4));
 	
