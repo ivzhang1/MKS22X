@@ -10,7 +10,7 @@ public class Merge{
     }
 
     public static void msort(int[] data, int[] temp, int lo, int hi){
-	if (hi - lo <= 50){
+	if (hi - lo <= 35){
 	    insertionSort(data, lo, hi);
 	    return;
 	}

@@ -33,7 +33,7 @@ public class Quick{
     }
 
     private static void quicksorty(int[] ary, int start, int end){
-        if (end-start <= 50){
+        if (end-start <= 35){
 	    insertionSort(ary, start, end);
 	}
 	else if (start < end){
