@@ -10,17 +10,19 @@ public class Merge{
     }
 
     public static void msort(int[] data, int[] temp, int lo, int hi){
-	int mid = (hi + lo)/2;
-	if (hi > lo){
-	    for (int i = lo; i <= hi; i++){
-		temp[i] = data[i];
-	    }
-
-	    msort(temp, data, lo, mid);
-	    msort(temp, data, mid+1, hi);
-	    merge(data, temp, lo, mid, hi);
+	if (hi - lo <= 50){
+	    insertionSort(data, lo, hi);
+	    return;
 	}
 
+	for (int i = lo; i <= hi; i++){
+	    temp[i] = data[i];
+	}
+	int mid = hi/2 + lo/2;
+		
+	msort(temp, data, lo, mid);
+	msort(temp, data, mid+1, hi);
+	merge(data, temp, lo, mid, hi);
        
     }
 
@@ -50,19 +52,35 @@ public class Merge{
     
     public static void merge(int[] data, int[] temp, int lo, int mid, int hi){
 	int medic = mid+1;
+	int count = lo;
+	
 
-	for (int i = lo; i <= hi; i++){
-	    if (lo <= mid && (medic > hi || temp[lo] < temp[medic])){
-		data[i] = temp[lo];
+	while(lo <= mid && medic <= hi){
+
+	    if (temp[lo] <= temp[medic]){
+		data[count] = temp[lo];
 		lo++;
 	    }
 	    else{
-		data[i] = temp[medic];
+		data[count] = temp[medic];
 		medic++;
 	    }
-
-	    
+	    count++;
+	    //toString(temp);
 	}
+
+	while (lo <= mid){
+	    data[count] = temp[lo];
+	    lo++;
+	    count++;
+	}
+
+	while (medic <= hi){
+	    //System.out.println(count);
+	    data[count] = temp[medic];
+	    medic++;
+	    count++;
+	}	
 
     }
 

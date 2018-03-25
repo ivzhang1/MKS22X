@@ -68,6 +68,7 @@ public class Drive{
 	 * Test your sort here!
 	 */
 	//Merge.toString(start);
+	//Merge.insertionSort(start,0, start.length-1);
 	Merge.mergesort(start);
 	//Merge.toString(start);
 
