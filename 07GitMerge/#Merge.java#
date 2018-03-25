@@ -14,33 +14,16 @@ public class Merge{
 	    insertionSort(data, lo, hi);
 	    return;
 	}
-	else{
-	    for (int i = lo; i <= hi; i++){
-		temp[i] = data[i];
-	    }
-	    int mid = hi/2 + lo/2;
+
+	for (int i = lo; i <= hi; i++){
+	    temp[i] = data[i];
+	}
+	int mid = hi/2 + lo/2;
 		
-	    msort(temp, data, lo, mid);
-	    msort(temp, data, mid+1, hi);
-	    merge(data, temp, lo, mid, hi);
-	}
+	msort(temp, data, lo, mid);
+	msort(temp, data, mid+1, hi);
+	merge(data, temp, lo, mid, hi);
        
-    }
-
-    public static void insertionSort(int[] ary, int lo, int hi){
-
-	for (int i = lo+1; i <= hi; i++){
-	    int key = ary[i];
-	    int past = i;
-
-	    while (past > lo && key < ary[past-1]){
-		ary[past] = ary[past-1];
-		past-=1;
-	    }
-
-	    ary[past] = key;
-	}
-
     }
     
     public static void merge(int[] data, int[] temp, int lo, int mid, int hi){
