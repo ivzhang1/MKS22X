@@ -68,10 +68,18 @@ public class Drive{
 	 * Test your sort here!
 	 */
 	Quick.quicksort(start);
+
+	long elapsedTime = System.currentTimeMillis() - startTime;
+		
+	//long startTimeI = System.currentTimeMillis();
+
+	//Quick.insertionSort(start, 0, start.length-1);
+	//long elapsedTimeI = System.currentTimeMillis() - startTimeI;
+
 	//Quick.toString(start);
 
-	
-	long elapsedTime = System.currentTimeMillis() - startTime;
+	//System.out.println("Insertion: " + (elapsedTimeI/1000.0) + "\n" + "Quick: " + (elapsedTime/1000.0));
+	    
 	if(Arrays.equals(start,result)){
 	    System.out.println("PASS Case "+". "+name(type)+" array, size:"+size+" "+elapsedTime/1000.0+"sec ");
 	}else{

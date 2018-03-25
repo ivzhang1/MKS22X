@@ -56,7 +56,7 @@ public class Quick{
 	    //toString(parti);
 
 
-	    if (big - small < 1000){
+	    if (big - small <= 200){
 	    	insertionSort(ary, start, end);
 	    }
 	    else{
