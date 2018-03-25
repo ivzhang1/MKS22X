@@ -33,10 +33,10 @@ public class Quick{
     }
 
     private static void quicksorty(int[] ary, int start, int end){
-        //if (end-start <= 500){
-	//    insertionSort(ary, start, end);
-	//}
-	if (start < end){
+        if (end-start <= 50){
+	    insertionSort(ary, start, end);
+	}
+	else if (start < end){
 	    
 	    int i = (int)(Math.random() * ((end-start) + 1) + start);
 	    int pivotal = ary[i];
