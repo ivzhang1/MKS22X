@@ -12,27 +12,18 @@ public class Quick{
 	}
 	System.out.println();
     }
+    public static void insertionSort(int[] ary, int lo, int hi){
 
-    public static void insertionSort(int[] data, int start, int end){
-	int place = 0;
-	int temp = 0;
-	int temp2 = 0;
+	for (int i = lo+1; i <= hi; i++){
+	    int key = ary[i];
+	    int past = i;
 
-	for (int i = start; i <= end; i++){
-	    int n = 0;
-	    place = data[i];
-
-	    while(data[n] < place && n < i){
-		n++;
+	    while (past > lo && key < ary[past-1]){
+		ary[past] = ary[past-1];
+		past-=1;
 	    }
-	    temp = data[n];
-	    for (int k = n; k < i; k++){
-		temp2 = data[k+1];
-		data[k+1] = temp;
-		temp = temp2;
-	    }
-	    data[n] = place;
 
+	    ary[past] = key;
 	}
 
     }
@@ -42,6 +33,9 @@ public class Quick{
     }
 
     private static void quicksorty(int[] ary, int start, int end){
+        //if (end-start <= 500){
+	//    insertionSort(ary, start, end);
+	//}
 	if (start < end){
 	    
 	    int i = (int)(Math.random() * ((end-start) + 1) + start);
@@ -55,37 +49,32 @@ public class Quick{
 	    //System.out.println(pivotal);
 	    //toString(parti);
 
-
-	    if (big - small <= 200){
-	    	insertionSort(ary, start, end);
-	    }
-	    else{
-	    
-		while (x <= big){
-		    //toString(parti);
-		    //System.out.println("LOL: "  + "small: " + small + " big: " + big + " i: " + i);
+	    while (x <= big){
+		//toString(parti);
+		//System.out.println("LOL: "  + "small: " + small + " big: " + big + " i: " + i);
+		//toString(parti);
+		//System.out.println(pivotal);
+		if (ary[x] < pivotal){
+		    swap(ary, x, small);
+		    small++;
+		    x++;
+		}
+		else if (ary[x] == pivotal){
+		    //System.out.println(i);
+		    x++;
 		    //toString(parti);
 		    //System.out.println(pivotal);
-		    if (ary[x] < pivotal){
-			swap(ary, x, small);
-			small++;
-			x++;
-		    }
-		    else if (ary[x] == pivotal){
-			//System.out.println(i);
-			x++;
-			//toString(parti);
-			//System.out.println(pivotal);
-		    }
-		    else{
-			swap(ary, big, x);
-			big-=1;
-		    }
 		}
-		quicksorty(ary, start, small-1);
-		quicksorty(ary, big+1, end);
-
+		else{
+		    swap(ary, big, x);
+		    big-=1;
+		}
 	    }
+
+	
+	    quicksorty(ary, start, small-1);
+	    quicksorty(ary, big+1, end);
+	   
 	}
     }
 
