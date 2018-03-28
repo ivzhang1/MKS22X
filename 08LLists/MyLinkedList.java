@@ -2,15 +2,27 @@ public class MyLinkedList{
 
     public Node first;
     public Node last;
-    public int length;
+    public int size;
 
+    public MyLinkedList(){
+	first = null;
+	last = null;
+	size = 0;
+    }
+
+    
     public int get(int n){
 	return 0;
+    }
+    public int size(){
+	return size;
     }
 
     public void set(int index, int value){
     }
 
+    public boolean add(int index){
+    }
     public void add(int index, int value){
     }
 
