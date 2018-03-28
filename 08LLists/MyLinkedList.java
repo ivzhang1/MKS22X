@@ -4,6 +4,18 @@ public class MyLinkedList{
     public Node last;
     public int length;
 
+    public int get(int n){
+	return 0;
+    }
+
+
+
+
+    
+
+    public String toString(){
+	return "";
+    }
     
     private class Node{
 	private Node next, prev;
@@ -15,33 +27,15 @@ public class MyLinkedList{
 	    prev = null;
 	}
 
-	public Node getNext(){
-	    return next;
-	}
+	public Node getNext(){return next;}
+	public Node getPrev(){return prev;}
+	public int getValue(){return data;}
 
-	public Node getPrev(){
-	    return prev;
-	}
-
-	public int getValue(){
-	    return data;
-	}
-
-	public void setNext(Node nexy){
-	    next = nexy;
-	}
-
-	public void setPrev(Node prey){
-	    prev = prey;
-	}
-
-	public void setValue(int daty){
-	    data = daty;
-	}
+	public void setNext(Node nexy){next = nexy;}
+	public void setPrev(Node prey){prev = prey;}
+	public void setValue(int daty){data = daty;}
 	
-	public String toString(){
-	    return "" + getValue();
-	}
+	public String toString(){return "" + getValue();}
     }
 
 
