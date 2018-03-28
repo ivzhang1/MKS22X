@@ -8,14 +8,20 @@ public class MyLinkedList{
 	return 0;
     }
 
+    public void set(int index, int value){
+    }
 
+    public void add(int index, int value){
+    }
 
-
-    
+    public void remove(int index){
+    }
 
     public String toString(){
 	return "";
     }
+
+
     
     private class Node{
 	private Node next, prev;
