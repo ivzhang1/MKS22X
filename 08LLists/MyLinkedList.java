@@ -76,6 +76,12 @@ public class MyLinkedList{
     }
     
     public void add(int index, Integer value){
+	Node curr = getNode(index);
+	Node newy = new Node(newData);
+	end.setNext(newy);
+	newy.setPrev(end);
+	end = newy;
+	return true;
     }
 
     public void remove(int index){
