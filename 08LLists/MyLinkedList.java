@@ -1,9 +1,5 @@
 public class MyLinkedList{
 
-    public static void main(String[] args){
-	MyLinkedList ly = new MyLinkedList();
-    }
-    
     public Node start, end;
     public int size;
 
@@ -12,6 +8,9 @@ public class MyLinkedList{
 	    throw new IndexOutOfBoundsException();
 	}
 
+	if (index == size){
+	    return end;
+	}
 	
 	Node curr = start;
 
@@ -23,6 +22,7 @@ public class MyLinkedList{
 	return curr;
     }
     
+    
     public MyLinkedList(){
 	start = null;
 	end = null;
@@ -30,7 +30,18 @@ public class MyLinkedList{
     }
     
     public String toString(){
-	return "";
+	Node curr = start;
+	String result = "[";
+	//System.out.println(size);
+        for (int i = 0; i < size; i++){
+	    result += curr.getValue() + ",";
+	    //System.out.println(curr);
+	    curr = curr.getNext();
+	}
+
+	result += "]";
+	
+	return result;
     }
 
     public void clear(){
@@ -47,8 +58,9 @@ public class MyLinkedList{
 	return getNode(index).getValue();
     }
 
-    public void set(int index, Integer value){
+    public Integer set(int index, Integer value){
 	getNode(index).setValue(value);
+	return value;
     }
 
     public int indexOf(Integer value){
@@ -60,31 +72,95 @@ public class MyLinkedList{
 		return count;
 	    }
 
-	    curr = start.getNext();
+	    curr = curr.getNext();
 	    count++;
 	}
 	
-	return 0;
+	return -1;
     }
     
     public boolean add(Integer newData){
-	Node newy = new Node(newData);
-	end.setNext(newy);
-	newy.setPrev(end);
-	end = newy;
+	add(size, newData);
 	return true;
     }
     
     public void add(int index, Integer value){
-	Node curr = getNode(index);
-	Node newy = new Node(newData);
-	end.setNext(newy);
-	newy.setPrev(end);
-	end = newy;
-	return true;
+	Node newy = new Node(value);
+
+	if (size == 0){
+	    newy.setPrev(newy);
+	    newy.setNext(newy);
+	    start = newy;
+	    end = newy;
+	}
+	else{
+	    Node curr = getNode(index);
+	    if (index == 0){
+		newy.setPrev(newy);
+		newy.setNext(curr);
+		curr.setPrev(newy);
+		start = newy;
+	    }
+	    else if (index == size){
+		//System.out.println("There");
+		newy.setPrev(curr);
+		newy.setNext(newy);
+		curr.setNext(newy);
+		end = newy;
+	    }
+	    else{
+		//System.out.println("Here");
+		curr.getPrev().setNext(newy);
+		newy.setPrev(curr.getPrev());
+		newy.setNext(curr);
+		curr.setPrev(newy);
+		//System.out.println(this);
+	    }
+	}
+
+	
+	size+=1;
     }
 
+    public boolean remove(Integer value){
+	Node curr = start;
+	int index = 0;
+	//System.out.println(start);
+	while (!curr.getValue().equals(value) && !curr.equals(end)){
+	    //System.out.println("NO");
+	    curr = curr.getNext();
+	    index+=1;
+	}
+	if (curr.getValue().equals(value)){
+	    //System.out.println("NO");
+	    remove(index);
+	    return true;
+	}
+	return false;
+	
+	
+    }
+    
     public void remove(int index){
+	Node removy = getNode(index);
+	Node prevy = removy.getPrev();
+	Node nexty = removy.getNext();
+	
+	if (index == 0){
+	    start = nexty;
+	    nexty.setPrev(nexty);
+	}
+	else if (index == size){
+	    end = prevy;
+	    prevy.setNext(prevy);
+	}
+	else{	    	
+	    nexty.setPrev(prevy);
+	    prevy.setNext(nexty);
+	}
+       
+	size-=1;
+	
     }
     
     private class Node{
