@@ -4,9 +4,11 @@ public class Drive{
 	System.out.println();
         System.out.println("--- Get ---");
         MyLinkedList a = new MyLinkedList();
-        
         for (int x = 0; x < 10; x++) {
-            a.add(new Integer((int) (Math.random() * 100)));
+	    Integer rando = new Integer((int) (Math.random() * 100));
+            a.add(rando);
+	    System.out.println(a);
+	    System.out.println(a.size());
         }
         
         System.out.println(a);

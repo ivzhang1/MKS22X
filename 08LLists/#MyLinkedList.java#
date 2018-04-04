@@ -4,7 +4,7 @@ public class MyLinkedList{
     public int size;
 
     private Node getNode(int index){
-	if (index < 0 || index > size){
+	if (index < 0 || index >= size){
 	    throw new IndexOutOfBoundsException();
 	}
 
@@ -33,16 +33,14 @@ public class MyLinkedList{
 	Node curr = start;
 	String result = "[";
 	//System.out.println(size);
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i <= size; i++){
 	    result += curr.getValue() + ",";
 	    //System.out.println(curr);
 	    curr = curr.getNext();
 	}
-	try{
-	    result = result.substring(0, result.length() - 1);
-	}catch(IndexOutOfBoundsException e){
-	}
+
 	result += "]";
+	
 	return result;
     }
 
@@ -82,7 +80,7 @@ public class MyLinkedList{
     }
     
     public boolean add(Integer newData){
-	add(size, newData);
+	add(size-1, newData);
 	return true;
     }
     
@@ -103,7 +101,7 @@ public class MyLinkedList{
 		curr.setPrev(newy);
 		start = newy;
 	    }
-	    else if (index == size){
+	    else if (index == size-1){
 		//System.out.println("There");
 		newy.setPrev(curr);
 		newy.setNext(newy);
@@ -152,7 +150,7 @@ public class MyLinkedList{
 	    start = nexty;
 	    nexty.setPrev(nexty);
 	}
-	else if (index == size){
+	else if (index == size-1){
 	    end = prevy;
 	    prevy.setNext(prevy);
 	}
