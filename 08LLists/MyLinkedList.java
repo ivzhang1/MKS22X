@@ -38,9 +38,8 @@ public class MyLinkedList{
 	    //System.out.println(curr);
 	    curr = curr.getNext();
 	}
-	try{
+	if (result.length() > 1){
 	    result = result.substring(0, result.length() - 1);
-	}catch(IndexOutOfBoundsException e){
 	}
 	result += "]";
 	return result;
@@ -57,10 +56,16 @@ public class MyLinkedList{
     }
 
     public int get(int index){
+	if (index == size){
+	    throw new IndexOutOfBoundsException();
+	}
 	return getNode(index).getValue();
     }
 
     public Integer set(int index, Integer value){
+	if (index == size){
+	    throw new IndexOutOfBoundsException();
+	}
 	getNode(index).setValue(value);
 	return value;
     }
@@ -135,16 +140,18 @@ public class MyLinkedList{
 	}
 	if (curr.getValue().equals(value)){
 	    //System.out.println("NO");
-	    remove(index);
-	    return true;
+	    return remove(index);
 	}
 	return false;
 	
 	
     }
     
-    public void remove(int index){
-	Node removy = getNode(index);
+    public boolean remove(int index){
+	if (size == index){
+	    throw new IndexOutOfBoundsException();
+	}
+	Node removy = getNode(index);	    
 	Node prevy = removy.getPrev();
 	Node nexty = removy.getNext();
 	
@@ -162,6 +169,7 @@ public class MyLinkedList{
 	}
        
 	size-=1;
+	return true;
 	
     }
     
