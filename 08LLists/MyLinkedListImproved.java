@@ -1,5 +1,15 @@
-public class MyLinkedList{
+public class MyLinkedListImproved<TypO> implements Iterable<TypO>{
 
+    public static void main(String[] args){
+	MyLinkedListImproved<String> s = new MyLinkedListImproved<>();
+	s.add("asdasda");
+	System.out.println(s);
+
+	MyLinkedListImproved<Integer> t = new MyLinkedListImproved<>();
+	t.add(Integer.valueOf(0));
+	System.out.println(t);
+    }
+    
     public Node start, end;
     public int size;
 
@@ -23,7 +33,7 @@ public class MyLinkedList{
     }
     
     
-    public MyLinkedList(){
+    public MyLinkedListImproved(){
 	start = null;
 	end = null;
 	size = 0;
@@ -55,16 +65,16 @@ public class MyLinkedList{
 	return size;
     }
 
-    public Integer get(int index){
+    public TypO get(int index){
 	return getNode(index).getValue();
     }
 
-    public Integer set(int index, Integer value){
+    public TypO set(int index, TypO value){
 	getNode(index).setValue(value);
 	return value;
     }
 
-    public int indexOf(Integer value){
+    public int indexOf(TypO value){
 	int count = 0;
 	Node curr = start;
 	
@@ -80,12 +90,12 @@ public class MyLinkedList{
 	return -1;
     }
     
-    public boolean add(Integer newData){
+    public boolean add(TypO newData){
 	add(size, newData);
 	return true;
     }
     
-    public void add(int index, Integer value){
+    public void add(int index, TypO value){
 	Node newy = new Node(value);
 	Node curr;
 	if (size == 0){
@@ -105,7 +115,7 @@ public class MyLinkedList{
 	    else if (index == size){
 		curr = end;
 		newy.setPrev(curr);
-		newy.setNext(newy);
+		newy.setNext(null);
 		curr.setNext(newy);
 		end = newy;
 	    }
@@ -124,7 +134,7 @@ public class MyLinkedList{
 	size+=1;
     }
 
-    public boolean remove(Integer value){
+    public boolean remove(TypO value){
 	int index = 0;
 	Node curr = getNode(index);
 	//System.out.println(start);
@@ -143,7 +153,7 @@ public class MyLinkedList{
 	
     }
     
-    public Integer remove(int index){
+    public TypO remove(int index){
 	Node removy = getNode(index);	    
 	Node prevy = removy.getPrev();
 	Node nexty = removy.getNext();
@@ -171,9 +181,9 @@ public class MyLinkedList{
     
     private class Node{
 	private Node next, prev;
-	private Integer data;
+	private TypO data;
 
-	public Node(Integer daty){
+	public Node(TypO daty){
 	    data = daty;
 	    next = null;
 	    prev = null;
@@ -181,11 +191,11 @@ public class MyLinkedList{
 
 	public Node getNext(){return next;}
 	public Node getPrev(){return prev;}
-	public Integer getValue(){return data;}
+	public TypO getValue(){return data;}
 
 	public void setNext(Node nexy){next = nexy;}
 	public void setPrev(Node prey){prev = prey;}
-	public void setValue(Integer daty){data = daty;}
+	public void setValue(TypO daty){data = daty;}
 	
 	public String toString(){return "" + getValue();}
     }
