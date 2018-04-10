@@ -1,20 +1,5 @@
-import java.util.Iterator;
-public class MyLinkedListImproved<TypO extends Comparable<TypO>> implements Iterable<TypO>{
+public class MyLinkedList{
 
-    public static void main(String[] args){
-	MyLinkedListImproved<String> s = new MyLinkedListImproved<>();
-	s.add("asdasda");
-	System.out.println(s);
-
-	MyLinkedListImproved<Integer> t = new MyLinkedListImproved<>();
-	for (int i = 0; i < 100; i++){
-	    t.add(i);
-	}
-	for (Integer x: t){
-	    System.out.print(x + " ");
-	}
-	System.out.println(t.max() + " " + t.min());
-    }
     
     public Node start, end;
     public int size;
@@ -39,7 +24,7 @@ public class MyLinkedListImproved<TypO extends Comparable<TypO>> implements Iter
     }
     
     
-    public MyLinkedListImproved(){
+    public MyLinkedList(){
 	start = null;
 	end = null;
 	size = 0;
@@ -71,42 +56,16 @@ public class MyLinkedListImproved<TypO extends Comparable<TypO>> implements Iter
 	return size;
     }
 
-    public TypO get(int index){
+    public Integer get(int index){
 	return getNode(index).getValue();
     }
 
-    public int max(){
-	int index = 0;
-	int big = 0;
-	
-	while(index < size()-1){
-	    if (getNode(index).getValue().compareTo(getNode(big).getValue()) > 0){
-		big = index;
-	    }
-	    index += 1;
-	}
-	return big;
-    }
-
-    public int min(){
-	int index = 0;
-	int small = 0;
-	
-	while(index < size()-1){
-	    if (getNode(index).getValue().compareTo(getNode(small).getValue()) < 0){
-		small = index;
-	    }
-	    index += 1;
-	}
-	return small;
-    }
-
-    public TypO set(int index, TypO value){
+    public Integer set(int index, Integer value){
 	getNode(index).setValue(value);
 	return value;
     }
 
-    public int indexOf(TypO value){
+    public int indexOf(Integer value){
 	int count = 0;
 	Node curr = start;
 	
@@ -122,12 +81,12 @@ public class MyLinkedListImproved<TypO extends Comparable<TypO>> implements Iter
 	return -1;
     }
     
-    public boolean add(TypO newData){
+    public boolean add(Integer newData){
 	add(size, newData);
 	return true;
     }
     
-    public void add(int index, TypO value){
+    public void add(int index, Integer value){
 	Node newy = new Node(value);
 	Node curr;
 	if (size == 0){
@@ -166,7 +125,7 @@ public class MyLinkedListImproved<TypO extends Comparable<TypO>> implements Iter
 	size+=1;
     }
 
-    public boolean remove(TypO value){
+    public boolean remove(Integer value){
 	int index = 0;
 	Node curr = getNode(index);
 	//System.out.println(start);
@@ -185,7 +144,7 @@ public class MyLinkedListImproved<TypO extends Comparable<TypO>> implements Iter
 	
     }
     
-    public TypO remove(int index){
+    public Integer remove(int index){
 	Node removy = getNode(index);	    
 	Node prevy = removy.getPrev();
 	Node nexty = removy.getNext();
@@ -210,12 +169,12 @@ public class MyLinkedListImproved<TypO extends Comparable<TypO>> implements Iter
 	return removy.getValue();
 	
     }
-
+    
     private class Node{
 	private Node next, prev;
-	private TypO data;
+	private Integer data;
 
-	public Node(TypO daty){
+	public Node(Integer daty){
 	    data = daty;
 	    next = null;
 	    prev = null;
@@ -223,49 +182,13 @@ public class MyLinkedListImproved<TypO extends Comparable<TypO>> implements Iter
 
 	public Node getNext(){return next;}
 	public Node getPrev(){return prev;}
-	public TypO getValue(){return data;}
+	public Integer getValue(){return data;}
 
 	public void setNext(Node nexy){next = nexy;}
 	public void setPrev(Node prey){prev = prey;}
-	public void setValue(TypO daty){data = daty;}
+	public void setValue(Integer daty){data = daty;}
 	
 	public String toString(){return "" + getValue();}
-    }
-
-    public Iterator<TypO> iterator(){
-	return new NodeIterator(start);
-    }
-
-    private class NodeIterator implements Iterator<TypO>{
-	Node curr;
-	public NodeIterator(Node start){
-	    curr = start;
-	}
-
-	public TypO next(){
-	    if(hasNext()){
-		curr = curr.getNext();
-		return curr.getValue();
-	    }
-	    else{
-		System.exit(1);
-	    }
-	    return null;
-	}
-	
-	public boolean hasNext(){
-	    try{
-		curr.getNext().equals(null);
-	    }
-	    catch(NullPointerException e){
-		return false;
-	    }
-	    return true;
-	}
-	
-	public void remove(){
-	    throw new UnsupportedOperationException();
-	}
     }
 
 
