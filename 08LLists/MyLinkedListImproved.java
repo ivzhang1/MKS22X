@@ -1,3 +1,4 @@
+import java.util.Iterator;
 public class MyLinkedListImproved<TypO> implements Iterable<TypO>{
 
     public static void main(String[] args){
@@ -5,8 +6,13 @@ public class MyLinkedListImproved<TypO> implements Iterable<TypO>{
 	s.add("asdasda");
 	System.out.println(s);
 
-	MyLinkedListImproved<Integer> t = new MyLinkedListImproved<>();
-	t.add(Integer.valueOf(0));
+	MyLinkedListImproved<String> t = new MyLinkedListImproved<>();
+	for (int i = 0; i < 100; i++){
+	    t.add(i + " ");
+	}
+	for (String x: t){
+	    System.out.print(x);
+	}
 	System.out.println(t);
     }
     
@@ -198,6 +204,42 @@ public class MyLinkedListImproved<TypO> implements Iterable<TypO>{
 	public void setValue(TypO daty){data = daty;}
 	
 	public String toString(){return "" + getValue();}
+    }
+
+    public Iterator<TypO> iterator(){
+	return new NodeIterator(start);
+    }
+
+    private class NodeIterator implements Iterator<TypO>{
+	Node curr;
+	public NodeIterator(Node start){
+	    curr = start;
+	}
+
+	public TypO next(){
+	    if(hasNext()){
+		curr = curr.getNext();
+		return curr.getValue();
+	    }
+	    else{
+		System.exit(1);
+	    }
+	    return null;
+	}
+	
+	public boolean hasNext(){
+	    try{
+		curr.getNext().equals(null);
+	    }
+	    catch(NullPointerException e){
+		return false;
+	    }
+	    return true;
+	}
+	
+	public void remove(){
+	    throw new UnsupportedOperationException();
+	}
     }
 
 
