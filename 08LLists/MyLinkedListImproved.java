@@ -4,12 +4,17 @@ public class MyLinkedListImproved<TypO extends Comparable<TypO>> implements Iter
     public static void main(String[] args){
 	MyLinkedListImproved<String> s = new MyLinkedListImproved<>();
 	s.add("asdasda");
+	s.add("asdasda");
+
 	System.out.println(s);
 
 	MyLinkedListImproved<Integer> t = new MyLinkedListImproved<>();
-	for (int i = 0; i < 100; i++){
-	    t.add(i);
+	for (int i = 0; i < 3; i++){
+	    t.add(2);
 	}
+	t.add(3);
+	t.add(0);
+	System.out.println(t);
 	for (Integer x: t){
 	    System.out.print(x + " ");
 	}
@@ -48,14 +53,8 @@ public class MyLinkedListImproved<TypO extends Comparable<TypO>> implements Iter
     public String toString(){
 	Node curr = start;
 	String result = "[";
-	//System.out.println(size);
-        for (int i = 0; i < size; i++){
-	    result += curr.getValue() + ",";
-	    //System.out.println(curr);
-	    curr = curr.getNext();
-	}
-	if (result.length() > 1){
-	    result = result.substring(0, result.length() - 1);
+	for (TypO z: this){
+	    result += "" + z + ",";
 	}
 	result += "]";
 	return result;
@@ -76,27 +75,45 @@ public class MyLinkedListImproved<TypO extends Comparable<TypO>> implements Iter
     }
 
     public int max(){
-	int index = 0;
-	int big = 0;
+	int big = -1;
+	int counter = 0;
+	TypO bigy = null;
+	try{
+	    bigy = start.getValue();
+	    big = 0;
+	}
+	catch(NullPointerException n){
+	    return big;
+	}
 	
-	while(index < size()-1){
-	    if (getNode(index).getValue().compareTo(getNode(big).getValue()) > 0){
-		big = index;
+	for(TypO x: this){
+	    if (x.compareTo(bigy) > 0){
+		big = counter;
+		bigy = x;
 	    }
-	    index += 1;
+	    counter+=1;
 	}
 	return big;
     }
 
     public int min(){
-	int index = 0;
-	int small = 0;
+	int small = -1;
+	int counter = 0;
+	TypO smally = null;
+	try{
+	    smally = start.getValue();
+	    small = 0;
+	}
+	catch(NullPointerException n){
+	    return small;
+	}
 	
-	while(index < size()-1){
-	    if (getNode(index).getValue().compareTo(getNode(small).getValue()) < 0){
-		small = index;
+	for(TypO x: this){
+	    if (x.compareTo(smally) < 0){
+		small = counter;
+		smally = x;
 	    }
-	    index += 1;
+	    counter+=1;
 	}
 	return small;
     }
@@ -244,8 +261,9 @@ public class MyLinkedListImproved<TypO extends Comparable<TypO>> implements Iter
 
 	public TypO next(){
 	    if(hasNext()){
+		TypO ans = curr.getValue();
 		curr = curr.getNext();
-		return curr.getValue();
+		return ans;
 	    }
 	    else{
 		System.exit(1);
@@ -254,13 +272,7 @@ public class MyLinkedListImproved<TypO extends Comparable<TypO>> implements Iter
 	}
 	
 	public boolean hasNext(){
-	    try{
-		curr.getNext().equals(null);
-	    }
-	    catch(NullPointerException e){
-		return false;
-	    }
-	    return true;
+	    return !(curr == null);
 	}
 	
 	public void remove(){
