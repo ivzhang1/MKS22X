@@ -1,6 +1,10 @@
 import java.util.Iterator;
 public class MyLinkedListImproved<TypO extends Comparable<TypO>> implements Iterable<TypO>{
 
+    public void extend(MyLinkedListImproved<TypO> z){
+	add(z.start());
+    }
+    
     public static void main(String[] args){
 	MyLinkedListImproved<String> s = new MyLinkedListImproved<>();
 	s.add("asdasda");
