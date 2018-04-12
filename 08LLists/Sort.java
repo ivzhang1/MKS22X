@@ -1,4 +1,4 @@
-public class Sorts{
+public class Sort{
     public static void main(String[] args){
 	MyLinkedListImproved<Integer> x = new MyLinkedListImproved<>();
 	for(int i = 0; i < 10; i++){
