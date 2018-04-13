@@ -1,45 +1,44 @@
-import java.util.ArrayList;
-
 public class Sort{
     public static void main(String[] args){
 	MyLinkedListImproved<Integer> x = new MyLinkedListImproved<>();
 	for(int i = 0; i < 10; i++){
 	    x.add(i);
 	}
+	System.out.println(x);
 	radixsort(x);
+	System.out.println(x);
+
     }
     
     
     public static void radixsort(MyLinkedListImproved<Integer> l){
-	int maxN = getNDigs(l.get(l.max()));
-	ArrayList<MyLinkedListImproved<Integer>> chumBuk = new ArrayList<>(10);
-	for (int p = 0; p < 10; p++){
-	    chumBuk.add(null);
-	}
+	int maxN = (int)(Math.log(l.get(l.max()))/Math.log(10));
+	@SuppressWarnings("unchecked")MyLinkedListImproved<Integer>[] chumBuk = new MyLinkedListImproved[10];
 	
 	int dig = 10;
+	
 	for(int i = 0; i < maxN; i++){
 	    for(Integer x: l){
-		if(getNDigs(x) > i){
+		if(Math.log(x)/Math.log(10) > i){
 		    dig = getPos(x, i);
-		    if(chumBuk.get(dig) == null){
+		    if(chumBuk[dig] == null){
 			MyLinkedListImproved<Integer> k = new MyLinkedListImproved<>();
 			k.add(x);
-			chumBuk.set(dig, k);
-			System.out.print("Go");
+			System.out.println(k + " " + dig);
+			chumBuk[dig] = k;
+			//System.out.print("Go");
 			
 		    }
 		    else{
-			chumBuk.get(dig).add(x);
+			chumBuk[dig].add(x);
 		    }
 		}
 	    }
 	    l.clear();
-	    for(MyLinkedListImproved<Integer> y: chumBuk){					
+	    for(MyLinkedListImproved<Integer> y: chumBuk){				    
 		l.extend(y);
+		
 	    }
-	    
-	    chumBuk = new ArrayList<>(10);
 	}
     }
 
