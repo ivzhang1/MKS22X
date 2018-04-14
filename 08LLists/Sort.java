@@ -1,10 +1,11 @@
 public class Sort{
     public static void main(String[] args){
 	MyLinkedListImproved<Integer> x = new MyLinkedListImproved<>();
-	for(int i = 20; i > 0; i--){
-	    x.add(i);
+	for(int i = 8; i > 0; i--){
+	    x.add((int)(Math.random()* i *10));
 	}
 	System.out.println(x);
+	x.add(100);
 	radixsort(x);
 	System.out.println(x);
 
@@ -17,7 +18,7 @@ public class Sort{
 	
 	int dig = 10;
 	System.out.println(maxN);
-	for(int i = 0; i < maxN; i++){
+	for(int i = 0; i <= maxN; i++){
 	    for(Integer x: l){
 		if(Math.ceil((Math.log(x)/Math.log(10))) >= i){
 		    dig = getPos(x, i);
@@ -36,11 +37,12 @@ public class Sort{
 		else{
 		    chumBuk[dig].add(x);
 		}
+		
 	    }
 	    l.clear();
 	    for(MyLinkedListImproved<Integer> y: chumBuk){
-		System.out.println(l + " " + y);
-		if(y.size() != 0){
+		//System.out.println(l + " " + y);
+		if(y != null){
 		    l.extend(y);
 		}
 	    }

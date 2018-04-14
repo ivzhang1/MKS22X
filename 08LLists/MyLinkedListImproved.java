@@ -2,16 +2,18 @@ import java.util.Iterator;
 public class MyLinkedListImproved<TypO extends Comparable<TypO>> implements Iterable<TypO>{
 
     public void extend(MyLinkedListImproved<TypO> z){
-	if (start == null){
-	    start = z.start;
+	if (z.start != null){
+	    if (start == null){
+		start = z.start;
+	    }
+	    else{
+		z.start.setPrev(end);
+		end.setNext(z.start);
+	    }
+	    end = z.end;	    
+	    size += z.size;
+	    z.clear();
 	}
-	else{
-	    z.start.setPrev(end);
-	    end.setNext(z.start);
-	}
-	end = z.end;	    
-	size += z.size;
-	z.clear();
     }
     
     public static void main(String[] args){
