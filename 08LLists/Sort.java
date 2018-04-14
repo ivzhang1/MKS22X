@@ -11,41 +11,61 @@ public class Sort{
 
     }
     
-    
     public static void radixsort(MyLinkedListImproved<Integer> l){
-	int maxN = (int)Math.ceil(Math.log(l.get(l.max()))/Math.log(10));
-	@SuppressWarnings("unchecked")MyLinkedListImproved<Integer>[] chumBuk = new MyLinkedListImproved[10];
+	if(l != null && l.size() != 0){
 	
-	int dig = 10;
-	System.out.println(maxN);
-	for(int i = 0; i <= maxN; i++){
-	    for(Integer x: l){
-		if(Math.ceil((Math.log(x)/Math.log(10))) >= i){
-		    dig = getPos(x, i);
-		}
-		else{
-		    dig = 0;
-		}
-		if(chumBuk[dig] == null){
-		    MyLinkedListImproved<Integer> k = new MyLinkedListImproved<>();
-		    k.add(x);
-		    //System.out.println(k + " " + dig);
-		    chumBuk[dig] = k;
-		    //System.out.print("Go");
+	    int maxN = getNDigs(l.get(l.max()));
+	    @SuppressWarnings("unchecked")MyLinkedListImproved<Integer>[] chumBuk = new MyLinkedListImproved[11];
+	
+	    int dig = 10;
+	    System.out.println(maxN);
+	    for(int i = 0; i <= maxN; i++){
+		for(Integer x: l){
+		    if (x<0){
+			dig = 10;
+		    }
+		    else if(getNDigs(x) >= i){
+			dig = getPos(x, i);
+		    }
+		    else{
+			dig = 0;
+		    }
+		    //System.out.println(x + " " + dig);
+		    if(chumBuk[dig] == null){
+			MyLinkedListImproved<Integer> k = new MyLinkedListImproved<>();
+			k.add(x);
+			//System.out.println(k + " " + dig);
+			chumBuk[dig] = k;
+			//System.out.print("Go");
 			
-		}
-		else{
-		    chumBuk[dig].add(x);
-		}
+		    }
+		    else{
+			chumBuk[dig].add(x);
+		    }
 		
-	    }
-	    l.clear();
-	    for(MyLinkedListImproved<Integer> y: chumBuk){
-		//System.out.println(l + " " + y);
-		if(y != null){
-		    l.extend(y);
 		}
+		l.clear();
+		int counter = 0;
+		for(MyLinkedListImproved<Integer> y: chumBuk){
+		    //System.out.println(l + " " + y);
+		    if(y != null && counter != 11){
+			l.extend(y);
+		    }
+		    counter+=1;
+
+		}	
 	    }
+
+	    if(chumBuk[10]!=null){
+		radixsort(chumBuk[10]);
+		chumBuk[10].reverse();
+		chumBuk[10].extend(l);
+		l = chumBuk[10];
+		chumBuk[10].clear();
+
+	    }
+	    
+	    
 	}
     }
 

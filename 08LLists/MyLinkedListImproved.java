@@ -15,6 +15,26 @@ public class MyLinkedListImproved<TypO extends Comparable<TypO>> implements Iter
 	    z.clear();
 	}
     }
+
+    public void reverse(){
+	if (start != null){
+	    Node star = start;
+	    Node tempy;
+	    for(int i = 0; i < size; i++){
+		tempy = star.getPrev();
+		star.setPrev(star.getNext());
+		star.setNext(tempy);
+		star = star.getPrev();
+	    }
+	    //System.out.println(start + " " + end);
+
+	    Node temp = end;
+	    end = start;
+	    start = temp;
+	}
+	//System.out.println(start + " " + end);
+	
+    }
     
     public static void main(String[] args){
 	MyLinkedListImproved<String> s = new MyLinkedListImproved<>();
@@ -31,7 +51,8 @@ public class MyLinkedListImproved<TypO extends Comparable<TypO>> implements Iter
 	
 	s.extend(st);
 	s.extend(sty);
-
+	System.out.println(s);
+	s.reverse();
 	System.out.println(s);
 
 	MyLinkedListImproved<Integer> t = new MyLinkedListImproved<>();
