@@ -2,12 +2,16 @@ import java.util.Iterator;
 public class MyLinkedListImproved<TypO extends Comparable<TypO>> implements Iterable<TypO>{
 
     public void extend(MyLinkedListImproved<TypO> z){
-	z.start.setPrev(end);
-	end.setNext(z.start);
+	if (start == null){
+	    start = z.start;
+	}
+	else{
+	    z.start.setPrev(end);
+	    end.setNext(z.start);
+	}
+	end = z.end;	    
 	size += z.size;
-	z.size = 0;
-	z.start = z.end = null;
-	
+	z.clear();
     }
     
     public static void main(String[] args){
@@ -19,7 +23,13 @@ public class MyLinkedListImproved<TypO extends Comparable<TypO>> implements Iter
 	st.add("asda132131223sda");
 	st.add("as123213123a");
 
+	MyLinkedListImproved<String> sty = new MyLinkedListImproved<>();
+	sty.add("sads");
+	sty.add("sasd");
+	
 	s.extend(st);
+	s.extend(sty);
+
 	System.out.println(s);
 
 	MyLinkedListImproved<Integer> t = new MyLinkedListImproved<>();

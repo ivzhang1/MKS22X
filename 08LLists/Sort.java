@@ -1,7 +1,7 @@
 public class Sort{
     public static void main(String[] args){
 	MyLinkedListImproved<Integer> x = new MyLinkedListImproved<>();
-	for(int i = 0; i < 10; i++){
+	for(int i = 20; i > 0; i--){
 	    x.add(i);
 	}
 	System.out.println(x);
@@ -12,32 +12,37 @@ public class Sort{
     
     
     public static void radixsort(MyLinkedListImproved<Integer> l){
-	int maxN = (int)(Math.log(l.get(l.max()))/Math.log(10));
+	int maxN = (int)Math.ceil(Math.log(l.get(l.max()))/Math.log(10));
 	@SuppressWarnings("unchecked")MyLinkedListImproved<Integer>[] chumBuk = new MyLinkedListImproved[10];
 	
 	int dig = 10;
-	
+	System.out.println(maxN);
 	for(int i = 0; i < maxN; i++){
 	    for(Integer x: l){
-		if(Math.log(x)/Math.log(10) > i){
+		if(Math.ceil((Math.log(x)/Math.log(10))) >= i){
 		    dig = getPos(x, i);
-		    if(chumBuk[dig] == null){
-			MyLinkedListImproved<Integer> k = new MyLinkedListImproved<>();
-			k.add(x);
-			System.out.println(k + " " + dig);
-			chumBuk[dig] = k;
-			//System.out.print("Go");
+		}
+		else{
+		    dig = 0;
+		}
+		if(chumBuk[dig] == null){
+		    MyLinkedListImproved<Integer> k = new MyLinkedListImproved<>();
+		    k.add(x);
+		    //System.out.println(k + " " + dig);
+		    chumBuk[dig] = k;
+		    //System.out.print("Go");
 			
-		    }
-		    else{
-			chumBuk[dig].add(x);
-		    }
+		}
+		else{
+		    chumBuk[dig].add(x);
 		}
 	    }
 	    l.clear();
-	    for(MyLinkedListImproved<Integer> y: chumBuk){				    
-		l.extend(y);
-		
+	    for(MyLinkedListImproved<Integer> y: chumBuk){
+		System.out.println(l + " " + y);
+		if(y.size() != 0){
+		    l.extend(y);
+		}
 	    }
 	}
     }
