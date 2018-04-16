@@ -4,10 +4,10 @@ public class RAdDrIvEBRo{
 	//-----------SORTING POSITIVES-----------
 	System.out.println("TESTING ON POSITIVE INTEGERS ONLY:");
 	MyLinkedListImproved<Integer> data = new MyLinkedListImproved<>();
-	int[] correctData = new int[100000000];
+	int[] correctData = new int[10000];
 
 	//Create MyLinkedListImproved and array with random integers
-	for(int i = 0; i < 10000000; i++){
+	for(int i = 0; i < 10000; i++){
 	    int temp = (int)(Math.random() * 1000000);
 	    data.add(temp);
 	    correctData[i] = temp;
