@@ -6,42 +6,37 @@ public class Calc{
 	char[] Cs = exp.toCharArray();
 	for (char k: Cs){
 	    if (k < 48 && k > 36){
-		parts.push(doMath(parts));
+		//System.out.println(doMath(k, parts));
+		parts.push((char)(doMath(k, parts)));
 	    }
 		
 	    if (k > 47 && k < 58){
-	        parts.push(k-48);
+		//System.out.println("?");
+
+	        parts.push((char) (k-48));
 		//System.out.println(k-48);
 	    }
 	    //System.out.println(c);
 	}
 	
-	return 0;
+	return parts.get(0);
 
     }
 
-    public static int doMath(LinkedList<Character> l){
+    public static int doMath(char k, LinkedList<Character> l){
 	int res = 0;
 	int size = l.size();
-	if (k == '+'){
-	    for(int i = size; i > 0; i-=1){
-		res += l.getLast();
-		l.pop();
+	for(int i = size; i > 0; i-=1){
+	    if (k == '+'){
+		res += l.pop();
 	    }
-	} else if (k == '-'){
-	    for(int i = size; i > 0; i-=1){
-		res -= l.getLast();
-		l.pop();
+	    else if (k == '-'){
+		res -= l.pop();
 	    }
-	}
-	else if (k == '*'){
-	    for(int i = size; i > 0; i-=1){
-		res *= l.getLast();
-		l.pop();
+	    else if (k == '*'){
+		res *= l.pop();
 	    }
-	}
-	else if (k == '/'){
-	    for(int i = size; i > 0; i-=1){
+	    else if (k == '/'){
 		res /= l.getLast();
 		l.pop();
 	    }
@@ -50,7 +45,7 @@ public class Calc{
     }
 
     public static void main(String[] args){
-	result("123+");
+	System.out.println(result("132+"));
     }
 
 
