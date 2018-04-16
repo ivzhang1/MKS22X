@@ -24,7 +24,7 @@ public class Calc{
     }
 
     public static int doMath(char k, LinkedList<Character> l){
-	int res = 0;
+	int res = l.pop();
 	int size = l.size();
 	for(int i = size; i > 0; i-=1){
 	    if (k == '+'){
@@ -37,15 +37,14 @@ public class Calc{
 		res *= l.pop();
 	    }
 	    else if (k == '/'){
-		res /= l.getLast();
-		l.pop();
+		res /= l.pop();
 	    }
 	}
 	return res;
     }
 
     public static void main(String[] args){
-	System.out.println(result("132+"));
+	System.out.println(result("132+32*"));
     }
 
 
