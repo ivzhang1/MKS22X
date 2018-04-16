@@ -14,17 +14,22 @@ public class Sort{
     public static void radixsort(MyLinkedListImproved<Integer> l){
 	if(l != null && l.size() != 0){
 	
-	    int maxN = getNDigs(l.get(l.max()));
+	    int maxN = l.get(l.max());
+
+	    if (maxN != 0){
+		maxN = (int)(Math.log10(maxN) + 1);
+	    }
+
 	    @SuppressWarnings("unchecked")MyLinkedListImproved<Integer>[] chumBuk = new MyLinkedListImproved[11];
 	
 	    int dig = 10;
-	    System.out.println(maxN);
+	    //System.out.println(maxN);
 	    for(int i = 0; i <= maxN; i++){
 		for(Integer x: l){
 		    if (x<0){
 			dig = 10;
 		    }
-		    else if(getNDigs(x) >= i){
+		    else if((int)(Math.log10(x)) >= i){
 			dig = getPos(x, i);
 		    }
 		    else{
