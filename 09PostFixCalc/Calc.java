@@ -1,20 +1,17 @@
 import java.util.LinkedList;
 
 public class Calc{
-    public static double result(String exp){
+    public static double eval(String exp){
 	LinkedList<Double> r = new LinkedList<>();
 	String[] Cs = exp.split(" ");
 	for (int i = 0; i < Cs.length; i++){
 	    String k = Cs[i];
 	    //System.out.println(k);
 	    if (k.equals("+") || k.equals("-") || k.equals("*") || k.equals("/") || k.equals("%")){
-		for(int z = 0; z < r.size(); z++){
-		    System.out.println(r.get(z));
-		}
-		System.out.println(k.charAt(0));
+		//System.out.println(k.charAt(0));
 		double ans = doMath(k.charAt(0),r);
-		System.out.println(ans);
-		System.out.println();
+		//System.out.println(ans);
+		//System.out.println();
 		r.push(ans); 
 	    }
 	    else{
@@ -65,7 +62,7 @@ public class Calc{
     }
 
     public static void main(String[] args){
-	System.out.println(result("8 2 + 99 9 - * 2 + 9 -"));
+	System.out.println(eval("99 100 - 10 12 - -"));
     }
 
 
