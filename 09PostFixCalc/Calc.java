@@ -1,50 +1,66 @@
 import java.util.LinkedList;
 
 public class Calc{
-    public static int result(String exp){
-	LinkedList<Character> parts = new LinkedList<>();
-	char[] Cs = exp.toCharArray();
-	for (char k: Cs){
-	    if (k < 48 && k > 36){
-		//System.out.println(doMath(k, parts));
-		parts.push((char)(doMath(k, parts)));
+    public static double result(String exp){
+	LinkedList<Double> r = new LinkedList<>();
+	String[] Cs = exp.split(" ");
+	for (int i = 0; i < Cs.length; i++){
+	    String k = Cs[i];
+	    if (k.equals("+") || k.equals("-") || k.equals("*") || k.equals("/") || k.equals("%")){
+		r.push(doMath(k.charAt(0),r)); 
 	    }
-		
-	    if (k > 47 && k < 58){
-		//System.out.println("?");
-
-	        parts.push((char) (k-48));
-		//System.out.println(k-48);
+	    else{
+		if (!k.equals(" ")){
+		    r.push(Double.parseDouble(k));
+		}
 	    }
-	    //System.out.println(c);
+	    
+	    //r.add(Cs[i]);
+	    //System.out.println(Cs[i]);		    
 	}
+
 	
-	return parts.get(0);
+	
+	return r.get(0);
 
     }
 
-    public static int doMath(char k, LinkedList<Character> l){
-	int res = l.pop();
+    public static double doMath(char k, LinkedList<Double> l){
+	double res = 0;
 	int size = l.size();
-	for(int i = size; i > 0; i-=1){
-	    if (k == '+'){
-		res += l.pop();
-	    }
-	    else if (k == '-'){
-		res -= l.pop();
-	    }
-	    else if (k == '*'){
-		res *= l.pop();
-	    }
-	    else if (k == '/'){
-		res /= l.pop();
-	    }
+	for(int i = 0; i < size; i++){
+	    System.out.println(l.get(i));
+	    // if (k == '+'){
+	    // 	res += l.pop();
+	    // }
+	    // else if (k == '-'){
+	    // 	res -= l.pop();
+	    // }
+	    // else if (k == '*'){
+	    // 	if (res == 0){
+	    // 	    res=1;
+	    // 	}
+	    // 	res *= l.pop();
+	    // }
+	    // else if (k == '/'){
+	    // 	if (res == 0){
+	    // 	    res = 1;
+	    // 	}
+	    // 	res /= l.pop();
+	    // }
+	    // else if (k == '%'){
+	    // 	if (res == 0){
+	    // 	    res = 1;
+	    // 	}
+	    // 	res %= l.pop();
+	    // }
 	}
+	System.out.println();
 	return res;
     }
 
     public static void main(String[] args){
-	System.out.println(result("132+32*"));
+	System.out.println(result("8 2 + 99 9 - * 2 + 9 -"));
     }
 
 
