@@ -6,13 +6,19 @@ public class Calc{
 	String[] Cs = exp.split(" ");
 	for (int i = 0; i < Cs.length; i++){
 	    String k = Cs[i];
+	    //System.out.println(k);
 	    if (k.equals("+") || k.equals("-") || k.equals("*") || k.equals("/") || k.equals("%")){
-		r.push(doMath(k.charAt(0),r)); 
+		for(int z = 0; z < r.size(); z++){
+		    System.out.println(r.get(z));
+		}
+		System.out.println(k.charAt(0));
+		double ans = doMath(k.charAt(0),r);
+		System.out.println(ans);
+		System.out.println();
+		r.push(ans); 
 	    }
 	    else{
-		if (!k.equals(" ")){
-		    r.push(Double.parseDouble(k));
-		}
+		r.push(Double.parseDouble(k));
 	    }
 	    
 	    //r.add(Cs[i]);
@@ -26,36 +32,35 @@ public class Calc{
     }
 
     public static double doMath(char k, LinkedList<Double> l){
-	double res = 0;
 	int size = l.size();
-	for(int i = 0; i < size; i++){
-	    System.out.println(l.get(i));
-	    // if (k == '+'){
-	    // 	res += l.pop();
-	    // }
-	    // else if (k == '-'){
-	    // 	res -= l.pop();
-	    // }
-	    // else if (k == '*'){
-	    // 	if (res == 0){
-	    // 	    res=1;
-	    // 	}
-	    // 	res *= l.pop();
-	    // }
-	    // else if (k == '/'){
-	    // 	if (res == 0){
-	    // 	    res = 1;
-	    // 	}
-	    // 	res /= l.pop();
-	    // }
-	    // else if (k == '%'){
-	    // 	if (res == 0){
-	    // 	    res = 1;
-	    // 	}
-	    // 	res %= l.pop();
-	    // }
+	double res = l.pop();
+	for(int i = size-1; i < size; i++){
+	    if (k == '+'){
+	    	res += l.pop();
+	    }
+	    else if (k == '-'){
+	    	res = l.pop() - res;
+	    }
+	    else if (k == '*'){
+	    	if (res == 0){
+	    	    res=1;
+	    	}
+	    	res *= l.pop();
+	    }
+	    else if (k == '/'){
+	    	if (res == 0){
+	    	    res = 1;
+	    	}
+	    	res /= l.pop();
+	    }
+	    else if (k == '%'){
+	    	if (res == 0){
+	    	    res = 1;
+	    	}
+	    	res %= l.pop();
+	    }
 	}
-	System.out.println();
+	//System.out.println();
 	return res;
     }
 
