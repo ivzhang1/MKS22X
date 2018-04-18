@@ -1,51 +1,49 @@
-import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
-public class MyDeque<E>{
+public class MyDeque<String>{
 
-    private LinkedList<E> ll;
+    private String[] ll;
     private int start, end;
     private int cap;
     
     public MyDeque(){
 	cap = 10;
-	ll = new LinkedList<>();
+	ll = new String[10];
     }
     public MyDeque(int initCap){
-	ll = new LinkedList<>();
+	ll = new String[initCap];
 	cap = initCap;
     }
 
     public int size(){return cap;}
     
     //Never add null
-    public void addFirst(E a){
+    public void addFirst(String a){
 	if(a == null) throw new NullPointerException();
     }
-    public void addLast(E a){
+    public void addLast(String a){
 	if(a == null) throw new NullPointerException();
 		
     }
 
     //NoSuchElementException
-    public E removeFirst(){
+    public String removeFirst(){
 	if(size() == 0) throw new NoSuchElementException();
-	return ll.get(0);
+	return null;
     }
-    public E removeLast(){
+    public String removeLast(){
 	if(size() == 0) throw new NoSuchElementException();
-
-	return ll.get(0);		
+	return null;		
     }
 
-    public E getFirst(){
+    public String getFirst(){
 	if(size() == 0) throw new NoSuchElementException();
 
-	return ll.get(0);
+	return null;
     }
-    public E getLast(){
+    public String getLast(){
 	if(size() == 0) throw new NoSuchElementException();
 
-	return  ll.get(0);
+	return null;
     }
 }
