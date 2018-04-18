@@ -1,6 +1,6 @@
 import java.util.LinkedList;
 
-public class Calc{
+public class Calculator{
     public static double eval(String exp){
 	LinkedList<Double> r = new LinkedList<>();
 	String[] Cs = exp.split(" ");
@@ -48,13 +48,13 @@ public class Calc{
 	    	if (res == 0){
 	    	    res = 1;
 	    	}
-	    	res /= l.pop();
+	    	res = l.pop() / res;
 	    }
 	    else if (k == '%'){
 	    	if (res == 0){
 	    	    res = 1;
 	    	}
-	    	res %= l.pop();
+	    	res = l.pop() % res;
 	    }
 	}
 	//System.out.println();
@@ -62,7 +62,7 @@ public class Calc{
     }
 
     public static void main(String[] args){
-	System.out.println(eval("99 100 - 10 12 - -"));
+	System.out.println(eval("99 9 + 1 3 + /"));
     }
 
 
