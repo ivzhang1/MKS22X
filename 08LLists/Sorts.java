@@ -74,6 +74,10 @@ public class Sorts{
 	}
     }
 
+    public static void radixsortIncludingNegatives(MyLinkedListImproved<Integer> data){
+	radixsort(data);
+    }
+
     public static int getNDigs(int z){
 	int num = 1;
 	z = Math.abs(z);

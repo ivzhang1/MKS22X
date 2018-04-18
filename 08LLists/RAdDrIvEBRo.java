@@ -15,7 +15,7 @@ public class RAdDrIvEBRo{
 
 	//Sorts data and times the sort
 	long end,start = System.currentTimeMillis();
-	Sort.radixsort(data);
+	Sorts.radixsort(data);
 	end = System.currentTimeMillis();
 
 	//Sorts the array
@@ -58,7 +58,7 @@ public class RAdDrIvEBRo{
 
 	//Sorts data and times the sort
 	start = System.currentTimeMillis();
-	Sort.radixsort(data);
+	Sorts.radixsort(data);
 	end = System.currentTimeMillis();
 
 	//Sorts the array
@@ -103,7 +103,7 @@ public class RAdDrIvEBRo{
 
 	//Sorts data and times the sort
 	start = System.currentTimeMillis();
-	Sort.radixsort(data);
+	Sorts.radixsortIncludingNegatives(data);
 	end = System.currentTimeMillis();
 
 	//Sorts the array
@@ -137,12 +137,12 @@ public class RAdDrIvEBRo{
 	correctData = new int[0];
 
 	start = System.currentTimeMillis();
-	Sort.radixsort(data);
+	Sorts.radixsort(data);
 	end = System.currentTimeMillis();
 
-	//Sorts the array
+	//Sortss the array
 	Arrays.sort(correctData);
-	System.out.println("Sort completed in " + (end - start) + " seconds");
+	System.out.println("Sorts completed in " + (end - start) + " seconds");
 
 	//Checks if data is properly sorted
 	hasError = false;
@@ -175,12 +175,12 @@ public class RAdDrIvEBRo{
 	correctData[0] = temp;
 
 	start = System.currentTimeMillis();
-	Sort.radixsort(data);
+	Sorts.radixsort(data);
 	end = System.currentTimeMillis();
 
-	//Sorts the array
+	//Sortss the array
 	Arrays.sort(correctData);
-	System.out.println("Sort completed in " + (end - start) + " seconds");
+	System.out.println("Sorts completed in " + (end - start) + " seconds");
 
 	//Checks if data is properly sorted
 	hasError = false;
@@ -213,12 +213,12 @@ public class RAdDrIvEBRo{
 	correctData[0] = temp;
 
 	start = System.currentTimeMillis();
-	Sort.radixsort(data);
+	Sorts.radixsort(data);
 	end = System.currentTimeMillis();
 
-	//Sorts the array
+	//Sortss the array
 	Arrays.sort(correctData);
-	System.out.println("Sort completed in " + (end - start) + " seconds");
+	System.out.println("Sorts completed in " + (end - start) + " seconds");
 
 	//Checks if data is properly sorted
 	hasError = false;
