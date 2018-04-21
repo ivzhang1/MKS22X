@@ -24,6 +24,7 @@ public class MyDeque<E>{
 		b.add("" + temp);
 	    }
 	}
+	//System.out.println(a1);
 	int index = 0;
 	boolean hasError = false;
 	String errorEvaluation = "Errors found at these indices: ";
@@ -53,22 +54,16 @@ public class MyDeque<E>{
     }
     
     public String toString(){
-	String ans = "[";
-	if(start < end){
-	    for (int i = start; i <= end; i++){
-		ans += l[i] + ", ";
-	    }
+	String res = "";
+	if(start == end){
+	    end = start+1;
 	}
-	else{
-	    for(int i = start; i < l.length; i++){
-		ans += l[i] + ", ";
-	    }
-	    for(int i = 0; i <= end; i++){
-		ans += l[i] + ", ";
-	    }
+	for(int i = start; i != end; i%=l.length){
+	    res += l[i] + ", ";
+	    i+=1;
+	    //System.out.println(start + " " + end);
 	}
-	ans = ans.substring(0, ans.length() - 2) + "]";
-	return ans;
+	return res;
     }
 
     
