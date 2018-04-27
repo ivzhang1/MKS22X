@@ -1,23 +1,30 @@
 public class MyHeap{
     public static void main(String[] args){
 	MyHeap heap = new MyHeap();
-	for(int i = 0; i < 20; i += 1){
-	    heap.add("" + i);
+	for(int i = 0; i < 10; i++){
+	    heap.add(i);
 	}
 	System.out.println(heap);
-	for(int i = 0; i < 20; i += 1){
-	    heap.remove();
-	}
+	heap.remove();
+	System.out.println(heap);
+
+	heap.remove();
+	System.out.println(heap);
+
+	heap.remove();
+
+	System.out.println(heap);
+
     }
 
 
     
-    private String[] h;
+    private Integer[] h;
     private int size = 0;
     private boolean max = true;
     
     public MyHeap(){
-	h = new String[10];
+	h = new Integer[10];
     }
 
     public MyHeap(boolean isMax){
@@ -26,15 +33,15 @@ public class MyHeap{
     }
 
     public void resize(){
-	String[] temph = new String[size*2];
+	Integer[] temph = new Integer[size*2];
 	for(int i = 0; i < size; i++){
 	    temph[i] = h[i]; 
 	}
 	h = temph;
     }
 
-    private static void swap(String[] base, int one, int two){
-	String temp = base[one];
+    private static void swap(Integer[] base, int one, int two){
+	Integer temp = base[one];
 	base[one] = base[two];
 	base[two] = temp;
     }
@@ -47,7 +54,7 @@ public class MyHeap{
 	swap(h, index, 2*index + incr);
     }
     
-    public void add(String s){
+    public void add(Integer s){
 	if(size == h.length){
 	    resize();
 	}
@@ -56,54 +63,74 @@ public class MyHeap{
 	size+=1;
     }
 
-    public void addH(String s, int i){
+    public void addH(Integer s, int i){
 	int id = (i - 1) / 2;
-	if(s.compareTo(h[id]) > 0){
+	if(s > h[id]){
 	    pushU(i);
 	    addH(s,id);
 	    //System.out.println(id + "" + i);
 	}
     }
 
-    public String remove(){
+    public Integer remove(){
 	if (size == 0){
 	    return null;
 	}
-	String r = h[size];
-	h[size] = null;
+	
+	Integer r = h[0];
+	h[0] = h[size-1];
+	//System.out.println(
+	removeH(h[size-1], 0);
+	h[size-1] = null;
+
 	size -= 1;
 	return r;
     }
 
-    public String remove(int index){
-	if (index == size){
-	    return remove();
-	}
-	h[index] = h[size];
-	String temp = h[index];
-	h[size] = null;
-	removeH(h[index], index);	
-	size-=1;
-	return temp;
-    }
+    public void removeH(Integer s, int i) {
+	int id = 2 * i;
 
-    public void removeH(String s, int i){
-	int id = i * 2;
-	if(id > size){
-
+	if(id+1 >= size || id+2 >= size){
 	}
-	else if(s.compareTo(h[id + 1]) > 0){
+	else if(h[id + 1] > s){
 	    pushD(i, 1);
-	    removeH(s, id);
+	    removeH(s, id+1);
 	}
-	else if(s.compareTo(h[id + 2]) > 0){
+	else if(h[id + 2] > s){
 	    pushD(i, 2);
-	    removeH(s, id);
+	    removeH(s, id + 2);
 	}
-	    
     }
 
-    public String peek(){
+    // public String remove(int index){
+    // 	if (index == size){
+    // 	    return remove();
+    // 	}
+    // 	h[index] = h[size];
+    // 	String temp = h[index];
+    // 	h[size] = null;
+    // 	removeH(h[index], index);	
+    // 	size-=1;
+    // 	return temp;
+    // }
+
+    // public void removeH(String s, int i){
+    // 	int id = i * 2;
+    // 	if(id > size){
+
+    // 	}
+    // 	else if(s.compareTo(h[id + 1]) > 0){
+    // 	    pushD(i, 1);
+    // 	    removeH(s, id);
+    // 	}
+    // 	else if(s.compareTo(h[id + 2]) > 0){
+    // 	    pushD(i, 2);
+    // 	    removeH(s, id);
+    // 	}
+	    
+    // }
+
+    public Integer peek(){
 	if (h.length > 0) return h[0];
 	return null;
     }
@@ -117,6 +144,7 @@ public class MyHeap{
 	for (int i = 0; i < size; i++){
 	    res += h[i] + ", ";
 	}
+
 	return res + "]";
 	
     }
