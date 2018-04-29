@@ -17,10 +17,12 @@ public class MyHeap{
 
 	int[] test = new int[10];
 	for(int z = 0; z < 10; z++){
-	    test[z] = z;
+	    test[z] = (int)(Math.random() * 10);
 	}
-	heapify(test, test.length-1);
 
+	heapsort(test);
+	System.out.println();
+	    
 	for(int k = 0; k < 10; k++){
 	    System.out.println(test[k]);
 	}
@@ -159,8 +161,31 @@ public class MyHeap{
 	
     }
 
+    public static void pushDown(int[] h, int i, int not){
+	//System.out.println("s");
+	int id =  2*i;
+	int s = h[i];
+	if(id+1 >= h.length || id+2 >= h.length){
+	}
+	else{
+	    if(id + 1 != not && h[id + 1] >= s && h[id+1] >= h[id+2]){
+		swap(h, i, id+1);
+		pushDown(h, id+1, not);
+	    }
+	    else if(id + 2 != not && h[id + 2] >= s && h[id+2] >= h[id+1]){
+		swap(h, i, id+2);
+		pushDown(h, id+2, not);
+	    }
+	}
+    }
+
+    
     public static void heapsort(int[] ary){
 	heapify(ary, ary.length-1);
+	for(int i = ary.length-1; i > 0; i-=1){
+	    swap(ary, 0, i);
+	    pushDown(ary, 0, i);
+	} 
     }
     
     public static void heapify(int[] mess, int i){
@@ -169,7 +194,7 @@ public class MyHeap{
 	    while(mess[i] > mess[(i-1)/2]){
 		swap(mess, i, (i-1)/2);
 		i = (i - 1)/2;
-		System.out.println("\n" + i + "\n");
+		//System.out.println("\n" + i + "\n");
 	    }
 	    heapify(mess, it - 1);
 
