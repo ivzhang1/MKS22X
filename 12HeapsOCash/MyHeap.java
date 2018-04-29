@@ -15,6 +15,16 @@ public class MyHeap{
 
 	System.out.println(heap);
 
+	int[] test = new int[10];
+	for(int z = 0; z < 10; z++){
+	    test[z] = z;
+	}
+	heapify(test, test.length-1);
+
+	for(int k = 0; k < 10; k++){
+	    System.out.println(test[k]);
+	}
+
     }
 
 
@@ -148,5 +158,29 @@ public class MyHeap{
 	return res + "]";
 	
     }
+
+    public static void heapsort(int[] ary){
+	heapify(ary, ary.length-1);
+    }
     
+    public static void heapify(int[] mess, int i){
+	int it = i;
+	if (i > 0){
+	    while(mess[i] > mess[(i-1)/2]){
+		swap(mess, i, (i-1)/2);
+		i = (i - 1)/2;
+		System.out.println("\n" + i + "\n");
+	    }
+	    heapify(mess, it - 1);
+
+	}
+
+    }
+
+    
+    private static void swap(int[] base, int one, int two){
+	int temp = base[one];
+	base[one] = base[two];
+	base[two] = temp;
+    }
 }
