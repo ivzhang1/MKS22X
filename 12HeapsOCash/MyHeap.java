@@ -1,6 +1,6 @@
-public class MyHeap{
+public class MyHeap<T extends Comparable<T>>{
     public static void main(String[] args){
-	MyHeap heap = new MyHeap();
+	MyHeap<Integer> heap = new MyHeap<>();
 	for(int i = 0; i < 10; i++){
 	    heap.add(i);
 	}
@@ -20,7 +20,7 @@ public class MyHeap{
 	    test[z] = (int)(Math.random() * 10);
 	}
 
-	heapsort(test);
+	heapify(test,test.length-1);
 	System.out.println();
 	    
 	for(int k = 0; k < 10; k++){
@@ -31,29 +31,31 @@ public class MyHeap{
 
 
     
-    private Integer[] h;
+    private T[] h;
     private int size = 0;
     private boolean max = true;
-    
+
+    @SuppressWarnings("unchecked")
     public MyHeap(){
-	h = new Integer[10];
+	h = (T[])new Comparable[10];
     }
 
     public MyHeap(boolean isMax){
 	this();
 	max = isMax;
     }
-
+    
+    @SuppressWarnings("unchecked")
     public void resize(){
-	Integer[] temph = new Integer[size*2];
+	T[] temph = (T[])new Comparable[size*2];
 	for(int i = 0; i < size; i++){
 	    temph[i] = h[i]; 
 	}
 	h = temph;
     }
 
-    private static void swap(Integer[] base, int one, int two){
-	Integer temp = base[one];
+    private void swap(T[] base, int one, int two){
+	T temp = base[one];
 	base[one] = base[two];
 	base[two] = temp;
     }
@@ -66,7 +68,7 @@ public class MyHeap{
 	swap(h, index, 2*index + incr);
     }
     
-    public void add(Integer s){
+    public void add(T s){
 	if(size == h.length){
 	    resize();
 	}
@@ -75,21 +77,21 @@ public class MyHeap{
 	size+=1;
     }
 
-    public void addH(Integer s, int i){
+    public void addH(T s, int i){
 	int id = (i - 1) / 2;
-	if(s > h[id]){
+	if(s.compareTo(h[id]) > 0){
 	    pushU(i);
 	    addH(s,id);
 	    //System.out.println(id + "" + i);
 	}
     }
 
-    public Integer remove(){
+    public T remove(){
 	if (size == 0){
 	    return null;
 	}
 	
-	Integer r = h[0];
+	T r = h[0];
 	h[0] = h[size-1];
 	//System.out.println(
 	removeH(h[size-1], 0);
@@ -99,16 +101,16 @@ public class MyHeap{
 	return r;
     }
 
-    public void removeH(Integer s, int i) {
+    public void removeH(T s, int i) {
 	int id = 2 * i;
 
 	if(id+1 >= size || id+2 >= size){
 	}
-	else if(h[id + 1] > s){
+	else if(h[id + 1].compareTo(s) > 0){
 	    pushD(i, 1);
 	    removeH(s, id+1);
 	}
-	else if(h[id + 2] > s){
+	else if(h[id + 2].compareTo(s) > 0){
 	    pushD(i, 2);
 	    removeH(s, id + 2);
 	}
@@ -142,7 +144,7 @@ public class MyHeap{
 	    
     // }
 
-    public Integer peek(){
+    public T peek(){
 	if (h.length > 0) return h[0];
 	return null;
     }
@@ -168,7 +170,7 @@ public class MyHeap{
 	if(id+1 >= h.length || id+2 >= h.length){
 	}
 	else{
-	    if(id + 1 != not && h[id + 1] >= s && h[id+1] >= h[id+2]){
+	    if(id + 1 != not && h[id + 1]>=s && h[id+1] >= h[id+2]){
 		swap(h, i, id+1);
 		pushDown(h, id+1, not);
 	    }
@@ -202,6 +204,9 @@ public class MyHeap{
 
     }
 
+    public int compareTo(T obj){
+	int res = 
+    }
     
     private static void swap(int[] base, int one, int two){
 	int temp = base[one];
