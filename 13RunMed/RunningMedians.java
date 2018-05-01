@@ -4,11 +4,13 @@ public RunningMedians{
     
     public RunningMedians(){
     }
-    
-    public void add(){
+
+    public void add(Double do){
 
     }
     
-    public int getMedian(){
+    public Double getMedian(){
     }
+
+    public int size(){}
 }
