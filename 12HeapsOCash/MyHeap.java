@@ -73,15 +73,15 @@ public class MyHeap<T extends Comparable<T>>{
 	return r;
     }
 
-    public void pushUp(T c, int starting){
+    private void pushUp(T c, int starting){
 	int id = (starting - 1) / 2;
 	if(c.compareTo(heap[id]) > 0){
 	    swap(heap, starting, id);
 	    pushUp(c, id);
 	}
     }
-
-    public void pushDown(T c, int starting){
+    
+    private void pushDown(T c, int starting){
 	int id = 2 * starting;
 
 	if(id+1 >= size || id+2 >= size){
@@ -95,12 +95,6 @@ public class MyHeap<T extends Comparable<T>>{
 	    pushDown(c, id + 2);
 	}
     }
-
-
-    public static void heapsort(int[] ary){}
-    public static void heapify(int[] mess, int i){}
-
-
 
     private void swap(T[] base, int one, int two){
 	T temp = base[one];
