@@ -1,7 +1,11 @@
-public class MyHeap{
+public class MyHeap<T extends Comparable<T>>{
+    public T[] heap;
+    public int size = 0;
+    public boolean max = true;
+    
     public static void main(String[] args){
-	MyHeap heap = new MyHeap();
-	for(int i = 0; i < 10; i++){
+	MyHeap<Integer> heap = new MyHeap<>(false);
+	for(int i = 0; i < 15; i++){
 	    heap.add(i);
 	}
 	System.out.println(heap);
@@ -14,139 +18,104 @@ public class MyHeap{
 	heap.remove();
 
 	System.out.println(heap);
-
     }
-
-
     
-    private Integer[] h;
-    private int size = 0;
-    private boolean max = true;
-    
+    //construct empty max heap
+    @SuppressWarnings("unchecked")
     public MyHeap(){
-	h = new Integer[10];
+	heap = (T[])new Comparable[10];
     }
 
+    //true: construct empty max heap, false: construct empty min heap.
     public MyHeap(boolean isMax){
 	this();
 	max = isMax;
     }
 
-    public void resize(){
-	Integer[] temph = new Integer[size*2];
-	for(int i = 0; i < size; i++){
-	    temph[i] = h[i]; 
-	}
-	h = temph;
-    }
-
-    private static void swap(Integer[] base, int one, int two){
-	Integer temp = base[one];
-	base[one] = base[two];
-	base[two] = temp;
-    }
-
-    public void pushU(int index){
-	swap(h, index, (index-1)/2);
-    }
-
-    public void pushD(int index, int incr){
-	swap(h, index, 2*index + incr);
+    public int compare(T a, T b){
+	int res = a.compareTo(b);
+	if (!max) res*=-1;
+	return res;
     }
     
-    public void add(Integer s){
-	if(size == h.length){
+    public int size(){
+	return size;
+    }
+
+    @SuppressWarnings("unchecked")
+    public void resize(){
+	T[] temph = (T[])new Comparable[size*2];
+	for(int i = 0; i < size; i++){
+	    temph[i] = heap[i]; 
+	}
+	heap = temph;
+    }
+
+    public T peek(){
+	return heap[0];
+    }
+  
+    public void add(T s){
+	if(size == heap.length){
 	    resize();
 	}
-	h[size] = s;
-	addH(s, size);
+	heap[size] = s;
+	pushUp(s, size);
 	size+=1;
     }
 
-    public void addH(Integer s, int i){
-	int id = (i - 1) / 2;
-	if(s > h[id]){
-	    pushU(i);
-	    addH(s,id);
-	    //System.out.println(id + "" + i);
-	}
-    }
-
-    public Integer remove(){
+    public T remove(){
 	if (size == 0){
 	    return null;
 	}
 	
-	Integer r = h[0];
-	h[0] = h[size-1];
+	T r = heap[0];
+	heap[0] = heap[size-1];
 	//System.out.println(
-	removeH(h[size-1], 0);
-	h[size-1] = null;
+	pushDown(heap[size-1], 0);
+	heap[size-1] = null;
 
 	size -= 1;
 	return r;
     }
 
-    public void removeH(Integer s, int i) {
-	int id = 2 * i;
+    private void pushUp(T c, int starting){
+	int id = (starting - 1) / 2;
+	if(compare(c, heap[id]) > 0){
+	    swap(heap, starting, id);
+	    pushUp(c, id);
+	}
+    }
+    
+    private void pushDown(T c, int starting){
+	int id = 2 * starting;
 
 	if(id+1 >= size || id+2 >= size){
 	}
-	else if(h[id + 1] > s){
-	    pushD(i, 1);
-	    removeH(s, id+1);
+	else if(compare(heap[id + 1],c) > 0 && compare(heap[id + 1], heap[id+2]) > 0){
+	    swap(heap, starting, id + 1);
+	    pushDown(c, id+1);
 	}
-	else if(h[id + 2] > s){
-	    pushD(i, 2);
-	    removeH(s, id + 2);
+	else if(compare(heap[id + 2], c) > 0 && compare(heap[id + 2], heap[id+1]) > 0){
+	    swap(heap, starting, id + 2);
+	    pushDown(c, id + 2);
 	}
     }
 
-    // public String remove(int index){
-    // 	if (index == size){
-    // 	    return remove();
-    // 	}
-    // 	h[index] = h[size];
-    // 	String temp = h[index];
-    // 	h[size] = null;
-    // 	removeH(h[index], index);	
-    // 	size-=1;
-    // 	return temp;
-    // }
-
-    // public void removeH(String s, int i){
-    // 	int id = i * 2;
-    // 	if(id > size){
-
-    // 	}
-    // 	else if(s.compareTo(h[id + 1]) > 0){
-    // 	    pushD(i, 1);
-    // 	    removeH(s, id);
-    // 	}
-    // 	else if(s.compareTo(h[id + 2]) > 0){
-    // 	    pushD(i, 2);
-    // 	    removeH(s, id);
-    // 	}
-	    
-    // }
-
-    public Integer peek(){
-	if (h.length > 0) return h[0];
-	return null;
-    }
-
-    public int size(){
-	return size;
+    private void swap(T[] base, int one, int two){
+	T temp = base[one];
+	base[one] = base[two];
+	base[two] = temp;
     }
 
     public String toString(){
 	String res = "[";
 	for (int i = 0; i < size; i++){
-	    res += h[i] + ", ";
+	    res += heap[i] + ", ";
 	}
 
 	return res + "]";
 	
     }
-    
+
 }

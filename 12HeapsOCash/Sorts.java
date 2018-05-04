@@ -9,13 +9,12 @@ public class Sorts{
 	System.out.println(toString(heap));
 	heapify(heap, heap.length-1);
 	System.out.println(toString(heap));
-	heapsort(heap);
-	System.out.println(toString(heap));
 
     }
     
     public static void heapsort(int[] ary){
 	heapify(ary, ary.length-1);
+	System.out.println(toString(ary));
 	heapsortH(ary, ary.length-1);
     }
 
@@ -28,16 +27,16 @@ public class Sorts{
     }
     
     public static void heapify(int[] mess, int i){
-	if(i > 0){
+	if(i >= 0){
 	    pushUp(mess, mess[i], i);
 	    heapify(mess, i - 1);
-	}
+	} 
     }
     
     private static void pushDown(int[] heap, int c, int starting, int end){
 	int id = 2 * starting;
 
-	if(id+1 >= end || id+2 >= end){
+	if(id+1 >= heap.length || id+2 >= heap.length){
 	}
 	else if(heap[id + 1] > c && heap[id + 1] > heap[id+2]){
 	    swap(heap, starting, id + 1);

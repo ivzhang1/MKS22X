@@ -4,9 +4,9 @@ public class MyHeap<T extends Comparable<T>>{
     public boolean max = true;
     
     public static void main(String[] args){
-	MyHeap<Integer> heap = new MyHeap<>(false);
+	MyHeap<Integer> heap = new MyHeap<>();
 	for(int i = 0; i < 15; i++){
-	    heap.add(i);
+	    heap.add((int)(i*Math.random()*10));
 	}
 	System.out.println(heap);
 	heap.remove();
