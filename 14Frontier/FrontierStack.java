@@ -1,21 +1,21 @@
-import java.util.Stack;
+import java.util.LinkedList;
 
 public class FrontierStack implements Frontier{
-    public Stack<Location> stack;
+    public LinkedList<Location> stack;
 
     public FrontierStack(){
-	stack = new Stack<>();
+	stack = new LinkedList<>();
     }
     
     public Location next(){
-	return stack.pop();
+	return stack.removeFirst();
     }
     
     public void add(Location n){
-	stack.push(n);
+	stack.addLast(n);
     }
     
     public boolean hasNext(){
-	return stack.peek() != null;
+	return stack.size() != 0;
     }
 }

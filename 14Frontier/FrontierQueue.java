@@ -15,4 +15,12 @@ public class FrontierQueue implements Frontier{
     public boolean hasNext(){
 	return queue.peek() != null;
     }
+
+    public String toString(){
+	String res = "[";
+	for(Location x: queue){
+	    res += "" + x + " , ";
+	}
+	return res + "]";
+    }
 }

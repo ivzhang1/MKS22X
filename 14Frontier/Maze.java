@@ -19,22 +19,23 @@ public class Maze{
 	Location[] loci = new Location[4];
 	int count = 0;
 	if(L.xL() >= maze.length || L.yL() >= maze[0].length){
-	    System.out.println("WTf");
 	    return null;
 	}
 	
-	int[] coors = {L.xL() + 1, L.xL() - 1,
-		       L.yL() + 1, L.yL() - 1};
-	for(int coor: coors){
-	    if(count < 2 && coor < maze.length){
-		loci[count] = new Location(coor, L.yL(), L);
-	    }
+	int[][] coors = {{L.xL() + 1, L.yL()},
+			 {L.xL() - 1, L.yL()},
+			 {L.xL(), L.yL() + 1},
+			 {L.xL(), L.yL() - 1}};
+	for(int coor[]: coors){
+	    if(coor[0] >= 0 && coor[0] < maze.length &&
+	       coor[1] >= 0 && coor[1] < maze[0].length){
 
-	    if(count > 2 && coor < maze[0].length){
-		loci[count] = new Location(L.xL(), coor, L);
+		if(maze[coor[0]][coor[1]] == ' ' || maze[coor[0]][coor[1]] == 'E'){
+		    loci[count] = new Location(coor[0], coor[1], L);
+		}
+		
+		count++;
 	    }
-	    
-	    count+=1;
 	}
 	return loci;
     }

@@ -1,46 +1,67 @@
 public class MazeSolver{
-  private Maze maze;
-  private Frontier frontier;
+    private Maze maze;
+    private Frontier frontier;
 
-  public MazeSolver(String mazeText){
-      maze = new Maze(mazeText);
-  }
+    public static void main(String[] args){
+	MazeSolver m = new MazeSolver(args[0]);
+	System.out.println(m.solve(0));
+	System.out.println(m);
 
-  //Default to BFS
-  public boolean solve(){ return solve(0); }
+	
+	MazeSolver n = new MazeSolver(args[0]);
+	System.out.println(n.solve(1));
+	System.out.println(n);
 
-  //mode: required to allow for alternate solve modes.
-  //0: BFS
-  //1: DFS
-  public boolean solve(int mode){
-      if(mode == 0){
-	  frontier = new FrontierQueue();
-      }
-      else{
-	  frontier = new FrontierStack();
-      }
+	
+    }
+    
 
-      frontier.add(Maze.getStart());
-      Location end = Maze.getEnd();
-      while(frontier.hasNext()){
-	  Location[] nextL = Maze.getNeighbors(frontier.next());
-	  for(Location l: nextL){
-	      if(!l.equals(null)){
+    
+    public MazeSolver(String mazeText){
+	maze = new Maze(mazeText);
+    }
 
-		  if(l.equals(end)){
-		      return true;
-		  }
+    //Default to BFS
+    public boolean solve(){ return solve(0); }
 
-		  frontier.add(l);
-	      }
-	  }
-      }
+    //mode: required to allow for alternate solve modes.
+    //0: BFS
+    //1: DFS
+    public boolean solve(int mode){
+	if(mode == 0){
+	    frontier = new FrontierQueue();
+	}
+	else{
+	    frontier = new FrontierStack();
+	}
+
+	frontier.add(maze.getStart());
+	Location end = maze.getEnd();
+	while(frontier.hasNext()){
+
+
+	    Location prev = frontier.next();
+	    Location[] nextL = maze.getNeighbors(prev);
+	    for(Location l: nextL){
+		if(l != null){
+		    char chary = maze.get(l.xL(), l.yL());
+		    if(chary == 'E'){
+			return true;
+		    }
+		    //return true;
+		    if(chary == ' '){
+			frontier.add(l);
+		    }
+		}
+	    }
+	    maze.set(prev.xL(), prev.yL(), '.');
+	}
       
-      return false;
-  }
+	return false;
+    }
 
-  public String toString(){
-    return maze.toString();
-  }
+    public String toString(){
+	return maze.toString();
+    }
 }
 

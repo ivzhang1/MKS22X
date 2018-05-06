@@ -13,4 +13,8 @@ public class Location{
     public int yL(){ return y;}
 
     public Location loc(){return previous;}
+
+    public String toString(){
+	return x + ", " + y + ", " + "(" + previous + ")"; 
+    }
 }
