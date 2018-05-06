@@ -1,50 +1,46 @@
 public class Sorts{
 
     public static void main(String[] args){
-	int[] heap = new int[15];
+	//int[] heap = new int[100];
 
-	for(int i = 0; i < 15; i++){
-	    heap[i] = (int)(Math.random() * 10);
-	}
+	//for(int i = 0; i < 100; i++){
+	//    heap[i] = (int)(Math.random() * 122);
+	//}
 	//System.out.println(toString(heap));
-	heapify(heap);
-	System.out.println(toString(heap));
+	//heapsort(heap);
+	//System.out.println(toString(heap));
 
     }
     
-    public static void heapsort(int[] ary){
-	heapify(ary);
-	System.out.println(toString(ary));
-	heapsortH(ary, ary.length-1);
-    }
-
-    public static void heapsortH(int[] ary, int end){
-	if(end > 0){
-	    swap(ary, 0, end);
-	    pushDown(ary, 0);
-	    heapsortH(ary, end-1);
+    public static void heapSort(int[] ary){
+	heapify(ary, ary.length-1);
+	for(int i = ary.length-1; i>-1; i-=1){
+	    swap(ary, 0, i);
+	    heapify(ary, i);
+	}
+	if(ary.length > 2 && ary[0] > ary[1]){
+	    swap(ary, 0, 1);
 	}
     }
     
-    
-    public static void heapify(int[] mess){
-	for (int i=mess.length; i>-1; i--){
-	    pushDown(mess, i);
+    public static void heapify(int[] mess, int len){
+	for (int i=len+1; i>-1; i--){
+
+	    pushDown(mess, i, len);	
 	    //System.out.println(i);
 	}
-	pushDown(mess, 0);
     }
     
-    private static void pushDown(int[] heap, int starting){
+    private static void pushDown(int[] heap, int starting, int end){
 	int id = 2 * starting;
-
-	if(id+1 < heap.length && heap[id + 1] > heap[starting] && heap[id + 1] > heap[id+2]){
+	
+	if(id+1 < end && heap[id + 1] > heap[starting] && heap[id + 1] > heap[id+2]){
 	    swap(heap, starting, id + 1);
-	    pushDown(heap, id+1);
+	    pushDown(heap, id+1, end);
 	}
-	else if(id+2 < heap.length && heap[id + 2] >= heap[starting] && heap[id + 2] >= heap[id+1]){
+	else if(id+2 < end && heap[id + 2] >= heap[starting] && heap[id + 2] >= heap[id+1]){
 	    swap(heap, starting, id + 2);
-	    pushDown(heap, id + 2);
+	    pushDown(heap, id + 2, end);
 	}
 
     }
