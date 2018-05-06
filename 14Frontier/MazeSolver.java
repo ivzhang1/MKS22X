@@ -3,7 +3,7 @@ public class MazeSolver{
   private Frontier frontier;
 
   public MazeSolver(String mazeText){
-    
+      maze = new Maze(mazeText);
   }
 
   //Default to BFS
@@ -13,7 +13,14 @@ public class MazeSolver{
   //0: BFS
   //1: DFS
   public boolean solve(int mode){
-    //initialize your frontier
+      if(mode == 0){
+	  frontier = new FrontierQueue();
+      }
+      else{
+	  frontier = new FrontierStack();
+      }
+
+      frontier.add(Maze.getStart());
     //while there is stuff in the frontier:
     //  get the next location
     //  process the location to find the locations (use the maze to do this)

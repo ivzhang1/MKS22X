@@ -16,7 +16,27 @@ public class Maze{
       YOU MUST COMPLETE THIS METHOD!!!
     */
     public Location[] getNeighbors(Location L){
-	return null;
+	Location[] loci = new Location[4];
+	int count = 0;
+	if(L.xL() >= maze.length || L.yL() >= maze[0].length){
+	    System.out.println("WTf");
+	    return null;
+	}
+	
+	int[] coors = {L.xL() + 1, L.xL() - 1,
+		       L.yL() + 1, L.yL() - 1};
+	for(int coor: coors){
+	    if(count < 2 && coor < maze.length){
+		loci[count] = new Location(coor, L.yL(), L);
+	    }
+
+	    if(count > 2 && coor < maze[0].length){
+		loci[count] = new Location(L.xL(), coor, L);
+	    }
+	    
+	    count+=1;
+	}
+	return loci;
     }
 
     public Location getStart(){
