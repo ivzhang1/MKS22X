@@ -6,14 +6,14 @@ public class Sorts{
 	for(int i = 0; i < 15; i++){
 	    heap[i] = (int)(Math.random() * 10);
 	}
-	System.out.println(toString(heap));
-	heapify(heap, heap.length-1);
+	//System.out.println(toString(heap));
+	heapify(heap);
 	System.out.println(toString(heap));
 
     }
     
     public static void heapsort(int[] ary){
-	heapify(ary, ary.length-1);
+	heapify(ary);
 	System.out.println(toString(ary));
 	heapsortH(ary, ary.length-1);
     }
@@ -21,38 +21,39 @@ public class Sorts{
     public static void heapsortH(int[] ary, int end){
 	if(end > 0){
 	    swap(ary, 0, end);
-	    pushDown(ary, ary[0], 0, end);
+	    pushDown(ary, 0);
 	    heapsortH(ary, end-1);
 	}
     }
     
-    public static void heapify(int[] mess, int i){
-	if(i >= 0){
-	    pushUp(mess, mess[i], i);
-	    heapify(mess, i - 1);
-	} 
+    
+    public static void heapify(int[] mess){
+	for (int i=mess.length; i>-1; i--){
+	    pushDown(mess, i);
+	    //System.out.println(i);
+	}
+	pushDown(mess, 0);
     }
     
-    private static void pushDown(int[] heap, int c, int starting, int end){
+    private static void pushDown(int[] heap, int starting){
 	int id = 2 * starting;
 
-	if(id+1 >= heap.length || id+2 >= heap.length){
-	}
-	else if(heap[id + 1] > c && heap[id + 1] > heap[id+2]){
+	if(id+1 < heap.length && heap[id + 1] > heap[starting] && heap[id + 1] > heap[id+2]){
 	    swap(heap, starting, id + 1);
-	    pushDown(heap, c, id+1, end);
+	    pushDown(heap, id+1);
 	}
-	else if(heap[id + 2] > c && heap[id + 2] > heap[id+1]){
+	else if(id+2 < heap.length && heap[id + 2] >= heap[starting] && heap[id + 2] >= heap[id+1]){
 	    swap(heap, starting, id + 2);
-	    pushDown(heap, c, id + 2, end);
+	    pushDown(heap, id + 2);
 	}
+
     }
 
-    public static void pushUp(int[] heap, int c, int starting){
+    public static void pushUp(int[] heap, int starting){
 	int id = (starting - 1) / 2;
-	if(c > heap[id]){
+	if(heap[starting] > heap[id]){
 	    swap(heap, starting, id);
-	    pushUp(heap, c, id);
+	    pushUp(heap, id);
 	}
     }
 
