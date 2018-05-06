@@ -1,14 +1,14 @@
 public class Sorts{
 
     public static void main(String[] args){
-	//int[] heap = new int[100];
+        int[] heap = new int[15];
 
-	//for(int i = 0; i < 100; i++){
-	//    heap[i] = (int)(Math.random() * 122);
-	//}
-	//System.out.println(toString(heap));
-	//heapsort(heap);
-	//System.out.println(toString(heap));
+	for(int i = 0; i < heap.length; i++){
+	     heap[i] = (int)(Math.random() * 10);
+        }
+	// //System.out.println(toString(heap));
+	heapSort(heap);
+	System.out.println(toString(heap));
 
     }
     
@@ -16,7 +16,7 @@ public class Sorts{
 	heapify(ary, ary.length-1);
 	for(int i = ary.length-1; i>-1; i-=1){
 	    swap(ary, 0, i);
-	    heapify(ary, i);
+	    pushDown(ary, 0, i);
 	}
 	if(ary.length > 2 && ary[0] > ary[1]){
 	    swap(ary, 0, 1);

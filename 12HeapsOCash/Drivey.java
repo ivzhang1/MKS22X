@@ -46,16 +46,16 @@ public class Drivey{
     //System.out.println("selectionSort:");
     //Sorts.selectionSort(randish);
 
-    //int[] newy = randish.clone();
+    int[] newy = randish.clone();
 
     System.out.println("heapSort:");
     Sorts.heapSort(randish);
-    //Arrays.sort(newy);
-    // for(int i = 0; i < randish.length; i++){
-    // 	if(newy[i] != randish[i]){
-    // 	    System.out.println(i);
-    // 	}
-    // }
+    Arrays.sort(newy);
+    for(int i = 0; i < randish.length; i++){
+    	if(newy[i] != randish[i]){
+    	    System.out.println(i);
+    	}
+    }
 
     //System.out.println(Arrays.toString(randish));
 
