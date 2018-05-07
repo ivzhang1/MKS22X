@@ -8,9 +8,9 @@ public class MazeSolver{
 	System.out.println(m);
 
 	
-	MazeSolver n = new MazeSolver(args[0]);
-	System.out.println(n.solve(1));
-	System.out.println(n);
+	//MazeSolver n = new MazeSolver(args[0]);
+	//System.out.println(n.solve(1));
+	//System.out.println(n);
 
 	
     }
@@ -28,7 +28,7 @@ public class MazeSolver{
     //0: BFS
     //1: DFS
     public boolean solve(int mode){
-	if(mode == 0){
+	if(mode == 1){
 	    frontier = new FrontierQueue();
 	}
 	else{
@@ -46,6 +46,8 @@ public class MazeSolver{
 		if(l != null){
 		    char chary = maze.get(l.xL(), l.yL());
 		    if(chary == 'E'){
+			maze.set(prev.xL(), prev.yL(), '.');
+
 			return true;
 		    }
 		    //return true;
@@ -54,6 +56,7 @@ public class MazeSolver{
 		    }
 		}
 	    }
+	    System.out.println(maze.toStringColor());
 	    maze.set(prev.xL(), prev.yL(), '.');
 	}
       
