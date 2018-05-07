@@ -7,10 +7,10 @@ public class FrontierQueue implements Frontier{
     }
     
     public Location next(){
-	return queue.removeFirst();
+	return queue.remove();
     }
     public void add(Location n){
-	queue.addFirst(n);
+	queue.add(n);
     }
     public boolean hasNext(){
 	return queue.peek() != null;

@@ -28,7 +28,7 @@ public class MazeSolver{
     //0: BFS
     //1: DFS
     public boolean solve(int mode){
-	if(mode == 1){
+	if(mode == 0){
 	    frontier = new FrontierQueue();
 	}
 	else{
@@ -47,6 +47,7 @@ public class MazeSolver{
 		    char chary = maze.get(l.xL(), l.yL());
 		    if(chary == 'E'){
 			maze.set(prev.xL(), prev.yL(), '.');
+			System.out.println(maze.toStringColor());
 
 			return true;
 		    }

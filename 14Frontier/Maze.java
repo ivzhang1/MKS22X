@@ -137,6 +137,9 @@ public class Maze{
 	    int col = i%maxc;
 
 	    char c =  maze[row][col];
+	    if(c == ' '){
+		c = '?';
+	    }
 	    ans+=c;
 	    if( col == maxc-1 ){
 		ans += "\n";

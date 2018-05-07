@@ -8,11 +8,11 @@ public class FrontierStack implements Frontier{
     }
     
     public Location next(){
-	return stack.removeFirst();
+	return stack.remove();
     }
     
     public void add(Location n){
-	stack.addLast(n);
+	stack.addFirst(n);
     }
     
     public boolean hasNext(){
