@@ -3,10 +3,11 @@ public class MazeSolver{
     private Frontier frontier;
 
     public static void main(String[] args){
-	MazeSolver m = new MazeSolver(args[0]);
-	System.out.println(m.solve(0));
-	System.out.println(m);
-
+	if(args.length == 2){
+	    MazeSolver m = new MazeSolver(args[0]);
+	    System.out.println(m.solve(Integer.parseInt(args[1])));
+	    System.out.println(m);
+	}
 	
 	//MazeSolver n = new MazeSolver(args[0]);
 	//System.out.println(n.solve(1));
@@ -47,6 +48,13 @@ public class MazeSolver{
 		    char chary = maze.get(l.xL(), l.yL());
 		    if(chary == 'E'){
 			maze.set(prev.xL(), prev.yL(), '.');
+			maze.end = new Location(l.xL(), l.yL(), prev);
+			end = maze.getEnd();
+			while(end.loc() != null && !end.loc().equals(maze.getStart())){
+			    end = end.loc();
+			    maze.set(end.xL(), end.yL(), '@');
+	    			    
+			}
 			System.out.println(maze.toStringColor());
 
 			return true;
@@ -58,7 +66,9 @@ public class MazeSolver{
 		}
 	    }
 	    System.out.println(maze.toStringColor());
-	    maze.set(prev.xL(), prev.yL(), '.');
+	    if(maze.get(prev.xL(), prev.yL()) != 'S'){
+		maze.set(prev.xL(), prev.yL(), '.');
+	    }
 	}
       
 	return false;
