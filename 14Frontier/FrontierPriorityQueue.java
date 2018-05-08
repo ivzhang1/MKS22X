@@ -14,10 +14,7 @@ public class FrontierPriorityQueue implements Frontier{
 	return pQueue.remove();
     }
     public void add(Location n){
-	double dist = Math.sqrt(
-				Math.pow((end.xL()-n.xL()),2) +
-				Math.pow((end.yL()-n.yL()),2)
-				);
+	double dist =Math.abs((end.xL()-n.xL())) + Math.abs((end.yL()-n.yL()));
 	n.distance = dist;
 	pQueue.add(n);
     }
