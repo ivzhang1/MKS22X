@@ -32,12 +32,17 @@ public class MazeSolver{
 	if(mode == 0){
 	    frontier = new FrontierQueue();
 	}
-	else{
+	else if (mode == 1){
 	    frontier = new FrontierStack();
 	}
+	else{
+	    frontier = new FrontierPriorityQueue(maze.getEnd());
+	}
+
 
 	frontier.add(maze.getStart());
 	Location end = maze.getEnd();
+
 	while(frontier.hasNext()){
 
 

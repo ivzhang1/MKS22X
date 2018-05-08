@@ -1,26 +1,33 @@
-import java.util.LinkedList;
 public class FrontierPriorityQueue implements Frontier{
-    public LinkedList<Location> queue;
-
-    public FrontierQueue(){
-	queue = new LinkedList<>();
+    public MyHeap<Location> pQueue;
+    public Location end;
+    
+    public FrontierPriorityQueue(){
+	pQueue = new MyHeap<>(false);
+    }
+    public FrontierPriorityQueue(Location endy){
+	pQueue = new MyHeap<>(false);
+	end = endy;
     }
     
     public Location next(){
-	return queue.remove();
+	return pQueue.remove();
     }
     public void add(Location n){
-	queue.addFirst(n);
+	double dist = Math.sqrt(
+				Math.pow((end.xL()-n.xL()),2) +
+				Math.pow((end.yL()-n.yL()),2)
+				);
+	n.distance = dist;
+	pQueue.add(n);
     }
+	    
     public boolean hasNext(){
-	return queue.peek() != null;
+	return pQueue.peek() != null;
     }
 
     public String toString(){
 	String res = "[";
-	for(Location x: queue){
-	    res += "" + x + " , ";
-	}
 	return res + "]";
     }
 }
