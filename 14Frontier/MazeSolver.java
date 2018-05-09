@@ -6,7 +6,7 @@ public class MazeSolver{
 	if(args.length == 2){
 	    MazeSolver m = new MazeSolver(args[0]);
 	    System.out.println(m.solve(Integer.parseInt(args[1])));
-	    System.out.println(m);
+	    //System.out.println(m);
 	}
 	
 	//MazeSolver n = new MazeSolver(args[0]);
@@ -36,7 +36,7 @@ public class MazeSolver{
 	    frontier = new FrontierStack();
 	}
 	else{
-	    frontier = new FrontierPriorityQueue(maze.getEnd());
+	    frontier = new FrontierPriorityQueue();
 	}
 
 

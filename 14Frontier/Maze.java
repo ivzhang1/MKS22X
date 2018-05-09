@@ -31,7 +31,8 @@ public class Maze{
 	       coor[1] >= 0 && coor[1] < maze[0].length){
 
 		if(maze[coor[0]][coor[1]] == ' ' || maze[coor[0]][coor[1]] == 'E'){
-		    loci[count] = new Location(coor[0], coor[1], L);
+		    double dist =Math.abs((end.xL()-coor[0])) + Math.abs((end.yL()-coor[1]));
+		    loci[count] = new Location(coor[0], coor[1], L, dist);
 		}
 		
 		count++;
