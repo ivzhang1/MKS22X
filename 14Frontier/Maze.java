@@ -7,6 +7,7 @@ public class Maze{
     private static final String SHOW_CURSOR =  "\033[?25h";
     Location start,end;
     private char[][]maze;
+    private boolean aStar;
 
 
 
@@ -32,7 +33,13 @@ public class Maze{
 
 		if(maze[coor[0]][coor[1]] == ' ' || maze[coor[0]][coor[1]] == 'E'){
 		    double dist =Math.abs((end.xL()-coor[0])) + Math.abs((end.yL()-coor[1]));
-		    loci[count] = new Location(coor[0], coor[1], L, dist);
+		    if(aStar){
+			dist += (L.dSoFar() + 1);
+			loci[count] = new Location(coor[0], coor[1], L, dist, L.dSoFar() + 1);
+		    }
+		    else{
+			loci[count] = new Location(coor[0], coor[1], L, dist);	
+		    }
 		}
 		
 		count++;
@@ -46,6 +53,9 @@ public class Maze{
     }
     public Location getEnd(){
 	return end;
+    }
+    public void setAStar(){
+	aStar = true;
     }
 
 
@@ -117,7 +127,7 @@ public class Maze{
     }
 
     public String toStringColor(){
-	return toStringColor(50);
+	return toStringColor(100);
     }
 
     public String toStringColor(int delay){

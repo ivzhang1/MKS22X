@@ -37,6 +37,9 @@ public class MazeSolver{
 	}
 	else{
 	    frontier = new FrontierPriorityQueue();
+	    if(mode == 3){
+		maze.setAStar();
+	    }
 	}
 
 
