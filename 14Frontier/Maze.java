@@ -36,6 +36,7 @@ public class Maze{
 		    if(aStar){
 			dist += (L.dSoFar() + 1);
 			loci[count] = new Location(coor[0], coor[1], L, dist, L.dSoFar() + 1);
+			//System.out.println(dist);
 		    }
 		    else{
 			loci[count] = new Location(coor[0], coor[1], L, dist);	
