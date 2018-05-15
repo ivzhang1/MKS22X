@@ -32,7 +32,7 @@ public class Maze{
 	       coor[1] >= 0 && coor[1] < maze[0].length){
 
 		if(maze[coor[0]][coor[1]] == ' ' || maze[coor[0]][coor[1]] == 'E'){
-		    double dist =Math.abs((end.xL()-coor[0])) + Math.abs((end.yL()-coor[1]));
+		    double dist = Math.abs((end.xL()-coor[0])) + Math.abs((end.yL()-coor[1]));
 		    if(aStar){
 			dist += L.dSoFar();
 			loci[count] = new Location(coor[0], coor[1], L, dist, L.dSoFar()+1);
