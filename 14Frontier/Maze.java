@@ -35,13 +35,12 @@ public class Maze{
 		    if(maze[coor[0]][coor[1]] != 'E'){
 			maze[coor[0]][coor[1]] = '?';
 		    }
-		    double dist = Math.abs((end.xL()-coor[0])) + Math.abs((end.yL()-coor[1]));
+		    double dist = Math.abs((end.xL()-coor[0]-1)) + Math.abs((end.yL()-coor[1]+1));
 		    if(aStar){
-			loci[count] = new Location(coor[0], coor[1], L, dist, L.dSoFar()+1);
-			//System.out.println(dist);
+			loci[count] = new Location(coor[0], coor[1], L, dist, 1+L.dSoFar());
 		    }
 		    else{
-			loci[count] = new Location(coor[0], coor[1], L, dist);	
+			loci[count] = new Location(coor[0], coor[1], L, dist, 0);	
 		    }
 		}
 		

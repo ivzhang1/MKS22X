@@ -13,7 +13,7 @@ public class FrontierPriorityQueue implements Frontier{
     }
 	    
     public boolean hasNext(){
-	return pQueue.peek() != null;
+	return pQueue.size() > 0;
     }
 
     public String toString(){

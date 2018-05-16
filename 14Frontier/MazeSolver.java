@@ -37,9 +37,9 @@ public class MazeSolver{
 	}
 	else{
 	    frontier = new FrontierPriorityQueue();
-	    if(mode == 3){
-		maze.setAStar();
-	    }
+	}
+	if(mode == 3){
+	    maze.setAStar();
 	}
 
 
@@ -50,9 +50,13 @@ public class MazeSolver{
 
 	    
 	    Location prev = frontier.next();
+	    //System.out.println(prev.distance());
 	    Location[] nextL = maze.getNeighbors(prev);
 	    for(Location l: nextL){
 		if(l != null){
+		    //System.out.println(l.distance());
+
+		    //System.out.println(l.distance());
 		    char chary = maze.get(l.xL(), l.yL());
 		    if(chary == 'E'){
 			maze.set(prev.xL(), prev.yL(), '.');
