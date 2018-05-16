@@ -48,7 +48,7 @@ public class MazeSolver{
 
 	while(frontier.hasNext()){
 
-
+	    
 	    Location prev = frontier.next();
 	    Location[] nextL = maze.getNeighbors(prev);
 	    for(Location l: nextL){
@@ -68,7 +68,7 @@ public class MazeSolver{
 			return true;
 		    }
 		    //return true;
-		    if(chary == ' '){
+		    if(chary == '?'){
 			frontier.add(l);
 		    }
 		}

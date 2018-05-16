@@ -32,9 +32,11 @@ public class Maze{
 	       coor[1] >= 0 && coor[1] < maze[0].length){
 
 		if(maze[coor[0]][coor[1]] == ' ' || maze[coor[0]][coor[1]] == 'E'){
+		    if(maze[coor[0]][coor[1]] != 'E'){
+			maze[coor[0]][coor[1]] = '?';
+		    }
 		    double dist = Math.abs((end.xL()-coor[0])) + Math.abs((end.yL()-coor[1]));
 		    if(aStar){
-			dist += L.dSoFar();
 			loci[count] = new Location(coor[0], coor[1], L, dist, L.dSoFar()+1);
 			//System.out.println(dist);
 		    }
@@ -149,9 +151,9 @@ public class Maze{
 	    int col = i%maxc;
 
 	    char c =  maze[row][col];
-	    if(c == ' '){
-		c = '?';
-	    }
+	    //if(c == ' '){
+	    //	c = '?';
+	    //}
 	    ans+=c;
 	    if( col == maxc-1 ){
 		ans += "\n";
