@@ -17,7 +17,7 @@ public class FrontierPriorityQueue implements Frontier{
     }
 
     public String toString(){
-	String res = "[";
-	return res + "]";
+	String res = pQueue.toString();
+	return res;
     }
 }

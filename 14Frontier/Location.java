@@ -1,3 +1,4 @@
+
 public class Location implements Comparable<Location>{
     private int x,y;
     private Location previous;
@@ -37,7 +38,7 @@ public class Location implements Comparable<Location>{
     public Location loc(){return previous;}
 
     public String toString(){
-	return x + ", " + y + ", " + "(" + previous + ")"; 
+	return "" + distance; 
     }
 
     public int compareTo(Location lod){

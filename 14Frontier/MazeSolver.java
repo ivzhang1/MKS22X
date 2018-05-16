@@ -47,12 +47,14 @@ public class MazeSolver{
 	Location end = maze.getEnd();
 
 	while(frontier.hasNext()){
-
 	    
 	    Location prev = frontier.next();
 	    //System.out.println(prev.distance());
 	    Location[] nextL = maze.getNeighbors(prev);
+
 	    for(Location l: nextL){
+		//System.out.println(frontier);
+
 		if(l != null){
 		    //System.out.println(l.distance());
 
