@@ -53,6 +53,7 @@ public class Drivey{
     Arrays.sort(newy);
     for(int i = 0; i < randish.length; i++){
     	if(newy[i] != randish[i]){
+	    System.out.println(randish.length);
     	    System.out.println(i);
     	}
     }

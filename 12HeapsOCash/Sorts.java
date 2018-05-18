@@ -21,6 +21,9 @@ public class Sorts{
 	if(ary.length > 2 && ary[0] > ary[1]){
 	    swap(ary, 0, 1);
 	}
+	if(ary[ary.length-2] > ary[ary.length-1]){
+	    swap(ary, ary.length-1, ary.length-2);
+	}
     }
     
     public static void heapify(int[] mess, int len){
