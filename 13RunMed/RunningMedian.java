@@ -4,20 +4,21 @@ public class RunningMedian{
 
 
     public static void main(String[] args){
-	RunningMedian lol = new RunningMedian();
-	for(double i = 0; i < 10.0; i++){
-	    lol.add(i);
-	    System.out.println(lol.getMedian());
-	}
-	lol.add(10.0);
-	lol.add(10.0);
-	lol.add(10.0);
-	lol.add(10.0);
-	lol.add(10.0);
-	lol.add(10.0);
-	lol.add(10.0);
-	lol.add(10.0);
-	System.out.println(lol);
+	// RunningMedian lol = new RunningMedian();
+	// for(double i = 0; i < 10.0; i++){
+	//     lol.add(i);
+	//     System.out.println(lol.getMedian());
+	// }
+	// lol.add(10.0);
+	// lol.add(10.0);
+	// lol.add(10.0);
+	// lol.add(10.0);
+	// lol.add(10.0);
+	// lol.add(10.0);
+	// lol.add(10.0);
+	// lol.add(10.0);
+	// System.out.println(lol);
+
     }
 
 

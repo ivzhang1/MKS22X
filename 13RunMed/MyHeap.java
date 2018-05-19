@@ -4,20 +4,6 @@ public class MyHeap<T extends Comparable<T>>{
     public boolean max = true;
     
     public static void main(String[] args){
-	MyHeap<Integer> heap = new MyHeap<>(false);
-	for(int i = 0; i < 15; i++){
-	    heap.add(i);
-	}
-	System.out.println(heap);
-	heap.remove();
-	System.out.println(heap);
-
-	heap.remove();
-	System.out.println(heap);
-
-	heap.remove();
-
-	System.out.println(heap);
     }
     
     //construct empty max heap
@@ -84,6 +70,7 @@ public class MyHeap<T extends Comparable<T>>{
 	if(compare(c, heap[id]) > 0){
 	    swap(heap, starting, id);
 	    pushUp(c, id);
+	    //pushDown(c, id);
 	}
     }
     
@@ -92,11 +79,11 @@ public class MyHeap<T extends Comparable<T>>{
 
 	if(id+1 >= size || id+2 >= size){
 	}
-	else if(compare(heap[id + 1],c) > 0 && compare(heap[id + 1], heap[id+2]) > 0){
+	else if(compare(heap[id + 1],c) >= 0 && compare(heap[id + 1], heap[id+2]) >= 0){
 	    swap(heap, starting, id + 1);
 	    pushDown(c, id+1);
 	}
-	else if(compare(heap[id + 2], c) > 0 && compare(heap[id + 2], heap[id+1]) > 0){
+	else if(compare(heap[id + 2], c) >= 0 && compare(heap[id + 2], heap[id+1]) >= 0){
 	    swap(heap, starting, id + 2);
 	    pushDown(c, id + 2);
 	}
