@@ -49,7 +49,7 @@ public class Drivey{
     int[] newy = randish.clone();
 
     System.out.println("heapSort:");
-    Sorts.heapSort(randish);
+    Sorts.heapsort(randish);
     Arrays.sort(newy);
     for(int i = 0; i < randish.length; i++){
     	if(newy[i] != randish[i]){

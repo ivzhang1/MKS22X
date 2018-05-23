@@ -7,12 +7,12 @@ public class Sorts{
 	     heap[i] = (int)(Math.random() * 10);
         }
 	// //System.out.println(toString(heap));
-	heapSort(heap);
+	heapsort(heap);
 	System.out.println(toString(heap));
 
     }
     
-    public static void heapSort(int[] ary){
+    public static void heapsort(int[] ary){
 	heapify(ary, ary.length-1);
 	for(int i = ary.length-1; i>-1; i-=1){
 	    swap(ary, 0, i);
