@@ -69,7 +69,7 @@ public class MazeSolver{
 			    maze.set(end.xL(), end.yL(), '@');
 	    			    
 			}
-			System.out.println(maze.toStringColor());
+			//System.out.println(maze.toStringColor());
 
 			return true;
 		    }
@@ -79,7 +79,7 @@ public class MazeSolver{
 		    }
 		}
 	    }
-	    System.out.println(maze.toStringColor());
+	    //System.out.println(maze.toStringColor());
 	    if(maze.get(prev.xL(), prev.yL()) != 'S'){
 		maze.set(prev.xL(), prev.yL(), '.');
 	    }
